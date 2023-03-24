@@ -21,6 +21,8 @@ end
 --   },
 -- }
 
+vim.g.cargo_run_current_test = "cargo test"
+
 local M = {}
 function M.execute_command(command, args, _)
   local args_flatten = " "

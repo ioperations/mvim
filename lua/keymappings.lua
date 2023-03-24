@@ -69,10 +69,12 @@ local mappings = {
         vim.diagnostic.goto_next(border_options)
       end,
     },
+    { "<leader>dd", "<cmd>call CompileRunGcc()<cr>" },
     { "<leader>lD", vim.lsp.buf.declaration },
     { "<leader>ld", "<cmd>Telescope lsp_definations<cr>" },
     { "<leader>lr", "<cmd>Telescope lsp_references<cr>" },
     { "<leader>li", "<cmd>Telescope lsp_implementations<cr>" },
+    { "<leader>ll", vim.lsp.codelens.run },
     { "<leader>lt", "<cmd>Telescope lsp_type_definations<cr>" },
     -- bufferline
     { "H", "<cmd>BufferLineCyclePrev<CR>" },
