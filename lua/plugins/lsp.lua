@@ -47,10 +47,25 @@ return {
         },
         severity_sort = true,
       })
+      local function hover_wrapper(err, request, ctx, config)
+        local fun = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+        local bufnr, winnr = fun(err, request, ctx, config)
+        if bufnr == nil or winnr == nil then
+          return
+        end
+        local contents = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+        contents = vim.tbl_map(function(line)
+          return string.gsub(line, "&emsp;", "")
+        end, contents)
+        vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
+        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
+        vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
+        vim.api.nvim_win_set_height(winnr, #contents)
 
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-      })
+        return bufnr, winnr
+      end
+
+      vim.lsp.handlers["textDocument/hover"] = hover_wrapper
 
       vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "rounded",
