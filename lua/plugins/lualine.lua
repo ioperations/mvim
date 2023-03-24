@@ -4,8 +4,8 @@ return {
     opts = {
       options = {
         icons_enabled = true,
-        components_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        components_separators = { left = "|", right = "|" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {},
         theme = "tokyonight",
         globalstatus = true,

@@ -1,6 +1,10 @@
 return {
   -- NOTE: plugins here require little to no configuratin
 
+  "nvim-lua/plenary.nvim",
+  "mfussenegger/nvim-dap",
+  "rust-lang/rust.vim",
+  "simrat39/rust-tools.nvim",
   "tpope/vim-fugitive",
   "tpope/vim-surround",
 
@@ -13,9 +17,15 @@ return {
   "andweeb/presence.nvim",
   "kyazdani42/nvim-web-devicons",
 
+  { "ray-x/lsp_signature.nvim" },
+  {
+    "ErichDonGubler/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
   -- Useful status updates for LSP
   { "j-hui/fidget.nvim", opts = { window = { border = "rounded", blend = 0 } } },
-
   { "numToStr/Comment.nvim", opts = {} },
   "rmagatti/auto-session",
   "airblade/vim-gitgutter",

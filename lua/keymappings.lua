@@ -51,36 +51,43 @@ local mappings = {
     -- escape clears highlighting
     { "<esc>", "<cmd>noh<cr><esc>" },
     -- hop words
-    { "f", "<cmd>HopWord<cr>" },
+    { "S", "<cmd>HopWord<cr>" },
     { "F", "<cmd>HopLine<cr>" },
     -- yank to end of line on Y
     { "Y", "y$" },
     -- lsp mappings
     { "K", vim.lsp.buf.hover },
     {
-      "[d",
+      "<leader>N",
       function()
         vim.diagnostic.goto_prev(border_options)
       end,
     },
     {
-      "]d",
+      "<leader>n",
       function()
         vim.diagnostic.goto_next(border_options)
       end,
     },
-    { "gD", vim.lsp.buf.declaration },
-    { "gd", vim.lsp.buf.definition },
-    { "gr", vim.lsp.buf.references },
-    { "gi", vim.lsp.buf.implementation },
+    { "<leader>lD", vim.lsp.buf.declaration },
+    { "<leader>ld", "<cmd>Telescope lsp_definations<cr>" },
+    { "<leader>lr", "<cmd>Telescope lsp_references<cr>" },
+    { "<leader>li", "<cmd>Telescope lsp_implementations<cr>" },
+    { "<leader>lt", "<cmd>Telescope lsp_type_definations<cr>" },
     -- bufferline
     { "H", "<cmd>BufferLineCyclePrev<CR>" },
     { "L", "<cmd>BufferLineCycleNext<CR>" },
     { "<C-d>", "<C-d>zz" },
     { "<C-u>", "<C-u>zz" },
     -- Remap for dealing with line wrap
-    { "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true } },
-    { "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true } },
+    { "k", "v:count == 0 ? 'gk' : 'k'", {
+      expr = true,
+      silent = true,
+    } },
+    { "j", "v:count == 0 ? 'gj' : 'j'", {
+      expr = true,
+      silent = true,
+    } },
     -- open link under cursor
     { "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>' },
   },
@@ -101,7 +108,7 @@ local mappings = {
     { "<", "<gv" },
     { ">", ">gv" },
     -- hop words
-    { "f", require("hop").hint_words },
+    { "S", require("hop").hint_words },
     -- moving text
     { "J", "<cmd>m '>+1<CR>gv=gv" },
     { "K", "<cmd>m '<-2<CR>gv=gv" },
@@ -115,7 +122,7 @@ local mappings = {
 register_mappings(mappings, { silent = true, noremap = true })
 
 -- S for search and replace in buffer
-vim.cmd("nnoremap S :%s/")
+-- vim.cmd("nnoremap S :%s/")
 
 -- hop in motion
 local actions = { "d", "c", "<", ">", "y" }
