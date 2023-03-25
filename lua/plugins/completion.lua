@@ -34,6 +34,8 @@ return {
       -- load snippets from path/of/your/nvim/config/my-cool-snippets
       loader.lazy_load({ path = vim.fn.expand("$HOME") .. "/.config/nvim/snippets/" })
 
+      require("luasnip/loaders/from_vscode").lazy_load()
+
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -57,8 +59,6 @@ return {
           end,
         },
         mapping = {
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-k>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -101,8 +101,12 @@ return {
             end
           end, { "i", "s" }),
 
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
+
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+
           ["<C-e>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({
             -- behavior = cmp.ConfirmBehavior.Insert,
@@ -116,7 +120,6 @@ return {
           { name = "path" },
         }),
         experimental = {
-          -- native_menu = false,
           ghost_text = true,
         },
         window = {

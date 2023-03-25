@@ -16,32 +16,13 @@ return {
   "christianchiarulli/nvim-ts-rainbow",
   "kyazdani42/nvim-web-devicons",
 
-  -- edit enhancement
-  "gcmt/wildfire.vim",
-  "mg979/vim-visual-multi",
-  "junegunn/vim-easy-align",
-
   -- TODO: this should be refactoed
   "rmagatti/auto-session",
-
-  -- git
-  -- "f-person/git-blame.nvim",
-  "airblade/vim-gitgutter",
-  "tpope/vim-fugitive",
-  "tpope/vim-surround",
 
   {
     "folke/trouble.nvim",
     config = function()
       require("trouble").setup()
-    end,
-  },
-
-  { "numToStr/Comment.nvim", opts = {} },
-  {
-    "folke/todo-comments.nvim",
-    config = function()
-      require("todo-comments").setup()
     end,
   },
 }

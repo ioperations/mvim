@@ -36,6 +36,8 @@ return {
         "help",
         "vim",
         "css",
+        "cpp",
+        "c",
       }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
       -- ignore_install = {}, -- List of parsers to ignore installing
       highlight = {

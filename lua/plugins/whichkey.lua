@@ -67,13 +67,9 @@ return {
           w = { "<cmd>Trouble workspace_diagnostics<CR>", "Workspace Diagnostics" },
           D = { "<cmd>Trouble document_diagnostics<CR>", "Document Diagnostics" },
         },
-        T = { "<cmd>TodoTelescope<CR>", "List Todos" },
-        c = { "<cmd>CodeActionMenu<CR>", "Code Actions" },
         d = {
-          o = { require("dapui").open, "debug ui open" },
-          c = { require("dapui").close, "debug ui open" },
+          o = { require("dapui").toggle, "debug ui toggle" },
         },
-        w = { "<cmd>WhichKey<CR>", "WhichKey" },
         s = { "<cmd>lua vim.o.spell = not vim.o.spell<cr>", "Toggle spell check" },
         r = { vim.lsp.buf.rename, "Rename" },
         -- Bufferline
@@ -85,6 +81,12 @@ return {
           h = { "<cmd>BufferLineCloseLeft<CR>", "Close all to left" },
           a = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close all but current" },
           p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
+        },
+        g = {
+          d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+          b = { "<cmd>Git blame<cr>", "Git blame" },
+
+          m = { require("gitsigns").blame_line, "git message" },
         },
         S = {
           name = "Spectre - find and replace",
