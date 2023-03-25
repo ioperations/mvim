@@ -75,7 +75,7 @@ local mappings = {
 
     { "<leader>dd", "<cmd>call CompileRunGcc()<cr>" },
 
-    { "ga", "<Plug>(EasyAlign)" },
+    { "ga", "<Plug>(LiveEasyAlign)" },
 
     -- Resize with arrows
     { "<C-Up>", ":resize -2<CR>" },
@@ -151,7 +151,7 @@ local mappings = {
     -- remap p to always paste from last yank
     { "<leader>p", '"_dP' },
 
-    { "ga", "<Plug>(EasyAlign)" },
+    { "ga", "<Plug>(LiveEasyAlign)" },
   },
   c = {
     { "<C-a>", "<Home>" },

@@ -4,6 +4,40 @@ return {
       "j-hui/fidget.nvim",
       opts = { window = { border = "rounded", blend = 0 } },
     },
+    { "nvim-lua/lsp-status.nvim", lazy = true },
+
+    -- winbar
+    --
+    {
+      "utilyre/barbecue.nvim",
+      name = "barbecue",
+      version = "*",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "nvim-web-devicons", -- optional dependency
+      },
+      opts = {
+        -- configurations go here
+      },
+    },
+    -- rust
+    {
+      "rust-lang/rust.vim",
+      "simrat39/rust-tools.nvim",
+      {
+        "saecki/crates.nvim",
+        version = "v0.3.0",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+          require("crates").setup({
+            null_ls = {
+              enabled = true,
+              name = "crates.nvim",
+            },
+          })
+        end,
+      },
+    },
     "p00f/clangd_extensions.nvim",
     {
       "ErichDonGubler/lsp_lines.nvim",

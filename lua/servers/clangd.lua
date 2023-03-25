@@ -2,13 +2,12 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local on_attach = function(
-  _, -- client
-  bufnr
-)
+local on_attach = function(client, bufnr)
   local opt = require("plugins.lsp_signatures").opt
   require("lsp_signature").on_attach(opt, bufnr)
 
+  local navic = require("nvim-navic")
+  navic.attach(client, bufnr)
   --   local wk = require("which-key")
   --  wk.register({
   --    l = {

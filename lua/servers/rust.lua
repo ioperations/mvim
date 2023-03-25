@@ -91,6 +91,9 @@ pcall(function()
     },
     server = {
       on_attach = function(client, bufnr)
+        local navic = require("nvim-navic")
+        navic.attach(client, bufnr)
+
         local opt = require("plugins.lsp_signatures").opt
         require("lsp_signature").on_attach(opt, bufnr)
 

@@ -1,5 +1,11 @@
 return {
-
+  -- project
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup()
+    end,
+  },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
   {
     "nvim-telescope/telescope.nvim",
@@ -26,7 +32,7 @@ return {
       local opts = {
         defaults = {
 
-          theme = "dropdown", ---@type telescope_themes
+          theme = "dropdown", --- @type telescope_themes
           file_ignore_patterns = { ".git/", "node_modules/", "env/", "target/", "build", "cmake-build*/" }, -- ignore git
           winblend = 0,
           prompt_prefix = " ",
@@ -88,6 +94,7 @@ return {
 
       telescope.load_extension("session-lens")
       telescope.load_extension("file_browser")
+      telescope.load_extension("projects")
     end,
   },
 }
