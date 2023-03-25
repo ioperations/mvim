@@ -14,12 +14,12 @@ vim.opt.scrolloff = 10
 vim.opt.wrap = true
 -- vim.opt.cmdheight = 2
 vim.opt.showmode = true
-vim.opt.numberwidth = 5 -- wider gutter
+-- vim.opt.numberwidth = 5 -- wider gutter
 vim.opt.linebreak = true -- don't break words on wrap
 vim.opt.smartindent = true
 vim.opt.completeopt = "menuone,noselect" -- nvim-cmp
 -- vim.opt.completeopt = {"menuone", "longest", "preview"}
-vim.opt.signcolumn = "yes" -- always show the signcolumn
+-- vim.opt.signcolumn = "yes" -- always show the signcolumn
 vim.opt.termguicolors = true
 
 -- spelling
@@ -40,7 +40,7 @@ vim.g.maplocalleader = " "
 vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
 
 -- Vertically center document when entering insert mode
-vim.cmd([[autocmd InsertEnter * norm zz]])
+-- vim.cmd([[autocmd InsertEnter * norm zz]])
 
 -- detect mdx file and set file type to markdown
 vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown.mdx]])

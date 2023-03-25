@@ -54,15 +54,12 @@ local mappings = {
     -- { "<C-l>", "<C-w>l", { silent = true } },
     -- Resize with arrows
 
+    -- window management
     { "<up>", ":res +5<cr>" },
     { "<down>", ":res -5<cr>" },
     { "<left>", ":vertical resize -5<cr>" },
     { "<right>", ":vertical resize +5<cr>" },
 
-    { "<C-Up>", "<cmd>resize -2<CR>", { silent = true } },
-    { "<C-Down>", "<cmd>resize +2<CR>", { silent = true } },
-    { "<C-Left>", "<cmd>vertical resize -2<CR>", { silent = true } },
-    { "<C-Right>", "<cmd>vertical resize +2<CR>", { silent = true } },
     -- Ctrl + p fuzzy files
     { "<C-p>", telescope_find_files },
     { "<C-g>", "<cmd>Telescope live_grep<cr>" },
