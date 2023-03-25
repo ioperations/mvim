@@ -3,13 +3,16 @@ return {
 
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-cmdline", -- command line
-      "hrsh7th/cmp-buffer", -- buffer completions
       "hrsh7th/cmp-nvim-lua", -- nvim config completions
-      "hrsh7th/cmp-nvim-lsp", -- lsp completions
-      "hrsh7th/cmp-path", -- file path completions
       "saadparwaiz1/cmp_luasnip", -- snippets completions
       "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hhrsh7th/cmp-buffer",
+      "hhrsh7th/cmp-path",
+      "hhrsh7th/cmp-cmdline",
+
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       "onsails/lspkind-nvim",
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true }, -- tailwind color in suggesions
@@ -25,11 +28,11 @@ return {
       luasnip.filetype_extend("javascriptreact", { "html" })
       luasnip.filetype_extend("typescriptreact", { "html" })
 
-      local loader = require("luasnip/loaders/from_vscode")
+      local loader = require("luasnip/loaders/from_snipmate")
       loader.lazy_load()
 
       -- load snippets from path/of/your/nvim/config/my-cool-snippets
-      loader.lazy_load({ paths = { "./snippets" } })
+      loader.lazy_load({ path = vim.fn.expand("$HOME") .. "/.config/nvim/snippets/" })
 
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -56,15 +59,16 @@ return {
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.close(),
-          ["<CR>"] = cmp.mapping.confirm({
-            -- behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
+          ["<C-k>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "c", "s" }),
+          ["<C-j>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -74,10 +78,19 @@ return {
             else
               fallback()
             end
-          end, {
-            "i",
-            "s",
-          }),
+          end, { "i", "c", "s" }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            elseif has_words_before() then
+              -- cmp.complete()
+              fallback()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -86,9 +99,14 @@ return {
             else
               fallback()
             end
-          end, {
-            "i",
-            "s",
+          end, { "i", "s" }),
+
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-e>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm({
+            -- behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
           }),
         },
         sources = cmp.config.sources({

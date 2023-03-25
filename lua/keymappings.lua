@@ -100,7 +100,8 @@ local mappings = {
     { "#", "#zz" },
     { "g*", "g*zz" },
     { "g#", "g#zz" },
-    { "Q", "<cmd>qall!<CR>" },
+    { "Q", "<cmd>q!<CR>" },
+    { "<c-q>", "<cmd>qall!<CR>" },
     { "<c-s>", "<cmd>w!<CR>" },
     { "<c-q>", "<cmd>q!<CR>" },
 

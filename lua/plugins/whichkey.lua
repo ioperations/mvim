@@ -69,10 +69,13 @@ return {
         },
         T = { "<cmd>TodoTelescope<CR>", "List Todos" },
         c = { "<cmd>CodeActionMenu<CR>", "Code Actions" },
-        d = { "<cmd>lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", "Line Diagnostics" },
+        d = {
+          o = { require("dapui").open, "debug ui open" },
+          c = { require("dapui").close, "debug ui open" },
+        },
         w = { "<cmd>WhichKey<CR>", "WhichKey" },
         s = { "<cmd>lua vim.o.spell = not vim.o.spell<cr>", "Toggle spell check" },
-        r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+        r = { vim.lsp.buf.rename, "Rename" },
         -- Bufferline
         b = {
           name = "Bufferline",
@@ -90,9 +93,9 @@ return {
         },
         l = {
           name = "LSP",
-          f = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format File" },
-          R = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-          D = { "<cmd>lua vim.lsp.buf.declaration<cr>", "declaration" },
+          f = { "lua vim.lsp.buf.format({ async = true })<cr>", "Format File" },
+          R = { vim.lsp.buf.rename, "Rename" },
+          D = { vim.lsp.buf.declaration, "declaration" },
           d = { "<cmd>Telescope lsp_definitions<cr>", "Definition" },
           r = { "<cmd>Telescope lsp_references<cr>", "References" },
           i = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
@@ -101,6 +104,7 @@ return {
           t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Definition" },
           n = { '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" } })<cr>', "next error" },
           p = { '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" } })<cr>', "next error" },
+          z = { require("lsp_lines").toggle, "Toggle lsp_lines" },
         },
         a = {
           name = "Auto Sessions",
@@ -112,13 +116,6 @@ return {
       }, {
         prefix = "<leader>",
       })
-
-      wk.register({
-        name = "Go to",
-        d = "Definition",
-        D = "Declaration",
-        r = "References",
-      }, { prefix = "g" })
     end,
   },
 }

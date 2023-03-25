@@ -91,9 +91,12 @@ pcall(function()
     },
     server = {
       on_attach = function(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-        local wk = require("which-key")
+        local opt = require("plugins.lsp_signatures").opt
+        require("lsp_signature").on_attach(opt, bufnr)
 
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+        local wk = require("which-key")
         wk.register({
           l = {
             name = "Lsp",

@@ -1,8 +1,9 @@
 return {
   {
-
-    { "j-hui/fidget.nvim", opts = { window = { border = "rounded", blend = 0 } } },
-    { "ray-x/lsp_signature.nvim" },
+    {
+      "j-hui/fidget.nvim",
+      opts = { window = { border = "rounded", blend = 0 } },
+    },
     "p00f/clangd_extensions.nvim",
     {
       "ErichDonGubler/lsp_lines.nvim",
@@ -18,6 +19,12 @@ return {
       end,
     },
     {
+      "williamboman/mason.nvim",
+      config = function()
+        require("mason").setup({})
+      end,
+    },
+    {
       "williamboman/mason-lspconfig.nvim",
       config = function()
         require("mason-lspconfig").setup({})
@@ -26,7 +33,6 @@ return {
         local settings = require("mason-lspconfig.settings")
         settings.current.automatic_installation = true
       end,
-      lazy = true,
     },
     { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
   },
@@ -36,26 +42,9 @@ return {
     config = function()
       -- Setup neovim lua configuration
       require("neodev").setup()
-      -- require all language server modules
-      require("servers.typescript")
-      require("servers.eslint")
-      require("servers.vue")
-      require("servers.css")
-      require("servers.html")
-      require("servers.luals")
-      require("servers.python")
-      require("servers.json")
-      require("servers.tailwind")
-      require("servers.yaml")
-      require("servers.prisma")
-      require("servers.emmet")
-      require("servers.gql")
-      require("servers.rust")
-      require("servers.go")
-      require("servers.deno")
-      require("servers.astro")
-      require("servers.scripts")
+      require("servers")
 
+      -- require all language server modules
       -- rounded border on :LspInfo
       require("lspconfig.ui.windows").default_options.border = "rounded"
 
@@ -72,6 +61,7 @@ return {
         virtual_text = {
           source = "if_many",
           prefix = " ", -- Could be '●', '▎', 'x'
+          only_current_line = true,
         },
         float = {
           source = "always",

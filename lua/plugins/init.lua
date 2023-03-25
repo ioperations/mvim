@@ -1,8 +1,8 @@
 return {
+
   -- NOTE: plugins here require little to no configuratin
 
   "nvim-lua/plenary.nvim",
-  "mfussenegger/nvim-dap",
 
   -- NOTE: disabled for now as not working with nvim window bindings
   -- "knubie/vim-kitty-navigator",
@@ -25,7 +25,7 @@ return {
   "rmagatti/auto-session",
 
   -- git
-  "f-person/git-blame.nvim",
+  -- "f-person/git-blame.nvim",
   "airblade/vim-gitgutter",
   "tpope/vim-fugitive",
   "tpope/vim-surround",
