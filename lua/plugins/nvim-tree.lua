@@ -2,8 +2,24 @@ return {
   {
     "kyazdani42/nvim-tree.lua",
     opts = {
+      auto_reload_on_write = false,
+      disable_netrw = false,
+      hijack_cursor = false,
+      hijack_netrw = true,
+      hijack_unnamed_buffer_when_opening = false,
+      ignore_buffer_on_setup = false,
+      sort_by = "name",
+
       view = {
         adaptive_size = true,
+        mappings = {
+          list = {
+            { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
+            { key = "h", action = "close_node" },
+            { key = "v", action = "vsplit" },
+            { key = "C", action = "cd" },
+          },
+        },
       },
       diagnostics = {
         enable = true,

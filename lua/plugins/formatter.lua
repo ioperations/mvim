@@ -64,6 +64,14 @@ return {
             }
           end,
         },
+        cpp = {
+          function()
+            return {
+              exe = "clang-format",
+              stdin = true,
+            }
+          end,
+        },
         rust = {
           function()
             return {
@@ -99,6 +107,8 @@ return {
           "*.go",
           "*.rs",
           "*.astro",
+          "*.cpp",
+          "*.cc",
         },
         command = "FormatWrite",
       })

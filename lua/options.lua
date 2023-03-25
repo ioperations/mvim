@@ -4,13 +4,14 @@ vim.opt.relativenumber = true
 vim.opt.mouse = "a" -- enable mouse
 vim.opt.clipboard = "unnamedplus" -- use system clipboard
 vim.opt.smartcase = true -- ignores case for search unless a capital is used in search
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true -- spaces instead of tabs
 vim.opt.number = true
 vim.opt.textwidth = 80
 vim.opt.linebreak = true
 vim.opt.scrolloff = 10
+vim.opt.wrap = true
 -- vim.opt.cmdheight = 2
 vim.opt.showmode = true
 vim.opt.numberwidth = 5 -- wider gutter
@@ -28,7 +29,6 @@ vim.opt.mousemodel = "popup"
 vim.opt.timeoutlen = 500
 
 -- Neovide settings
-vim.o.guifont = "Victor Mono Nerd Font:h11"
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3

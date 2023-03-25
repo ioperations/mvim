@@ -1,5 +1,36 @@
 return {
   {
+
+    { "j-hui/fidget.nvim", opts = { window = { border = "rounded", blend = 0 } } },
+    { "ray-x/lsp_signature.nvim" },
+    "p00f/clangd_extensions.nvim",
+    {
+      "ErichDonGubler/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup()
+      end,
+    },
+    {
+      "weilbith/nvim-code-action-menu",
+      cmd = "CodeActionMenu",
+      config = function()
+        vim.g.code_action_menu_window_border = "single"
+      end,
+    },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      config = function()
+        require("mason-lspconfig").setup({})
+
+        -- automatic_installation is handled by lsp-manager
+        local settings = require("mason-lspconfig.settings")
+        settings.current.automatic_installation = true
+      end,
+      lazy = true,
+    },
+    { "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = { "folke/neodev.nvim" },
     config = function()
