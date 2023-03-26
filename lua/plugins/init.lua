@@ -17,7 +17,7 @@ return {
   "kyazdani42/nvim-web-devicons",
 
   -- TODO: this should be refactoed
-  "rmagatti/auto-session",
+  -- "rmagatti/auto-session",
 
   {
     "folke/trouble.nvim",

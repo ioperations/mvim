@@ -7,7 +7,6 @@ return {
     { "nvim-lua/lsp-status.nvim", lazy = true },
 
     -- winbar
-    --
     {
       "utilyre/barbecue.nvim",
       name = "barbecue",
@@ -40,7 +39,7 @@ return {
     },
     "p00f/clangd_extensions.nvim",
     {
-      "ErichDonGubler/lsp_lines.nvim",
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       config = function()
         require("lsp_lines").setup()
       end,

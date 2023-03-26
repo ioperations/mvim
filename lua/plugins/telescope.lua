@@ -5,6 +5,7 @@ return {
     config = function()
       require("project_nvim").setup()
     end,
+    lazy = true,
   },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
   {
@@ -12,7 +13,7 @@ return {
 
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "rmagatti/session-lens",
+      -- "rmagatti/session-lens",
       "nvim-telescope/telescope-file-browser.nvim",
       "BurntSushi/ripgrep",
     },
@@ -92,7 +93,7 @@ return {
       }
       telescope.setup(opts)
 
-      telescope.load_extension("session-lens")
+      -- telescope.load_extension("session-lens")
       telescope.load_extension("file_browser")
       telescope.load_extension("projects")
     end,
