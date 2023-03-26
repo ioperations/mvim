@@ -2,9 +2,9 @@ return {
   {
     "kyazdani42/nvim-tree.lua",
     opts = {
-      auto_reload_on_write = false,
+      auto_reload_on_write = true,
       disable_netrw = false,
-      hijack_cursor = false,
+      hijack_cursor = true,
       hijack_netrw = true,
       hijack_unnamed_buffer_when_opening = false,
       ignore_buffer_on_setup = false,
@@ -12,7 +12,7 @@ return {
       root_dirs = {},
       prefer_startup_root = false,
       sync_root_with_cwd = true,
-      reload_on_bufenter = false,
+      reload_on_bufenter = true,
       respect_buf_cwd = true,
       on_attach = "disable",
       remove_keymaps = false,
@@ -67,11 +67,12 @@ return {
       update_focused_file = {
         enable = true,
         update_root = true,
+        update_cwd = true,
       },
       renderer = {
         icons = {
           show = {
-            folder_arrow = false,
+            folder_arrow = true,
           },
         },
         highlight_git = true,
@@ -82,9 +83,12 @@ return {
           icons = {
             corner = "└ ",
             edge = "│ ",
+            item = "│",
             none = "  ",
           },
         },
+        special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+        symlink_destination = true,
       },
       actions = {
         use_system_clipboard = true,
