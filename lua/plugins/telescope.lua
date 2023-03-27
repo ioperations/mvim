@@ -8,9 +8,9 @@ return {
     lazy = true,
   },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
+  { "nvim-telescope/telescope-dap.nvim", lazy = true },
   {
     "nvim-telescope/telescope.nvim",
-
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- "rmagatti/session-lens",
@@ -18,7 +18,6 @@ return {
       "BurntSushi/ripgrep",
     },
     lazy = false,
-
     extensions = {
       fzf = {
         fuzzy = true, -- false will only do exact matching
@@ -27,12 +26,10 @@ return {
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
     },
-
     config = function()
       local telescope = require("telescope")
       local opts = {
         defaults = {
-
           theme = "dropdown", --- @type telescope_themes
           file_ignore_patterns = { ".git/", "node_modules/", "env/", "target/", "build", "cmake-build*/" }, -- ignore git
           winblend = 0,
@@ -49,21 +46,18 @@ return {
             "--hidden",
             "--glob=!.git/",
           },
-
           path_display = { "smart" },
           color_devicons = true,
           mappings = {
             i = {
               ["<C-j>"] = require("telescope.actions").move_selection_next,
               ["<C-k>"] = require("telescope.actions").move_selection_previous,
-
               ["<C-f>"] = function(...)
                 return require("telescope.actions").preview_scrolling_down(...)
               end,
               ["<C-b>"] = function(...)
                 return require("telescope.actions").preview_scrolling_up(...)
               end,
-
               ["<C-d>"] = function(...)
                 return require("telescope.actions").preview_scrolling_down(...)
               end,
@@ -75,16 +69,12 @@ return {
               ["q"] = function(...)
                 return require("telescope.actions").close(...)
               end,
-
               ["<C-n>"] = require("telescope.actions").move_selection_next,
               ["<C-p>"] = require("telescope.actions").move_selection_previous,
-
               ["<C-j>"] = require("telescope.actions").move_selection_next,
               ["<C-k>"] = require("telescope.actions").move_selection_previous,
-
               ["<C-d>"] = require("telescope.actions").preview_scrolling_down,
               ["<C-u>"] = require("telescope.actions").preview_scrolling_up,
-
               ["<C-f>"] = require("telescope.actions").preview_scrolling_down,
               ["<C-b>"] = require("telescope.actions").preview_scrolling_up,
             },
@@ -96,6 +86,8 @@ return {
       -- telescope.load_extension("session-lens")
       telescope.load_extension("file_browser")
       telescope.load_extension("projects")
+      telescope.load_extension("fzf")
+      telescope.load_extension("dap")
     end,
   },
 }

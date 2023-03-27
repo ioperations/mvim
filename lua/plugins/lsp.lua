@@ -2,7 +2,12 @@ return {
   {
     {
       "j-hui/fidget.nvim",
-      opts = { window = { border = "rounded", blend = 0 } },
+      opts = {
+        window = {
+          -- border = "rounded",
+          blend = 0,
+        },
+      },
     },
     { "nvim-lua/lsp-status.nvim", lazy = true },
 
