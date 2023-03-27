@@ -129,6 +129,9 @@ return {
         end,
     },
 
+    -- looking
+    "christianchiarulli/nvim-ts-rainbow",
+
     -- colorschema
     {
         "lunarvim/lunar.nvim",

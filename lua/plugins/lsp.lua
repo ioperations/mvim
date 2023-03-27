@@ -1,5 +1,6 @@
 return {
     {
+        -- lsp server progress
         {
             "j-hui/fidget.nvim",
             opts = {
@@ -9,6 +10,7 @@ return {
                 },
             },
         },
+        -- status
         { "nvim-lua/lsp-status.nvim", lazy = true },
 
         -- winbar
@@ -42,13 +44,23 @@ return {
                 end,
             },
         },
+
+        {
+            "folke/trouble.nvim",
+            config = function()
+                require("trouble").setup()
+            end,
+        },
+
         "p00f/clangd_extensions.nvim",
+        -- diagnostic show
         {
             "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
             config = function()
                 require("lsp_lines").setup()
             end,
         },
+        -- code action
         {
             "weilbith/nvim-code-action-menu",
             cmd = "CodeActionMenu",
@@ -56,12 +68,15 @@ return {
                 vim.g.code_action_menu_window_border = "single"
             end,
         },
+
+        -- lsp server manager: installation
         {
             "williamboman/mason.nvim",
             config = function()
                 require("mason").setup({})
             end,
         },
+        -- lsp server manager: automatic setup
         {
             "williamboman/mason-lspconfig.nvim",
             config = function()
@@ -93,6 +108,7 @@ return {
             end,
         },
     },
+    -- lsp client configuration [nvim builtin lsc]
     {
         "neovim/nvim-lspconfig",
         dependencies = { "folke/neodev.nvim" },
