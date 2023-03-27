@@ -112,7 +112,6 @@ local mappings = {
         { "<M-c>", ":lua require('dap').continue()<cr>" },
         { "<M-u>", ":lua require('dap').run_to_cursor()<cr>" },
         { "<M-k>", ":lua require('dapui').eval()<cr>" },
-        { "<M-k>", ":lua require('dapui').eval()<cr>" },
 
         -- bufferline
         { "<tab>", "<cmd>BufferLineCyclePrev<CR>" },
@@ -143,6 +142,7 @@ local mappings = {
         { ">", ">gv" },
         -- hop words
         { "S", require("hop").hint_words },
+        { "F", require("hop").hint_lines },
         -- moving text
         { "J", "<cmd>m '>+1<CR>gv=gv" },
         { "K", "<cmd>m '<-2<CR>gv=gv" },
