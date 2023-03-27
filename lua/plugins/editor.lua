@@ -32,21 +32,6 @@ return {
         {
             "petertriho/nvim-scrollbar",
             config = function()
-                --       local colors = require("tokyonight.colors").setup()
-                --
-                --       local opt = {
-                --         handle = {
-                --           color = colors.bg_highlight,
-                --         },
-                --         marks = {
-                --           Search = { color = colors.orange },
-                --           Error = { color = colors.error },
-                --           Warn = { color = colors.warning },
-                --           Info = { color = colors.info },
-                --           Hint = { color = colors.hint },
-                --           Misc = { color = colors.purple },
-                --         },
-                --       }
                 require("scrollbar").setup({})
             end,
         },
@@ -130,7 +115,25 @@ return {
     },
 
     -- looking
-    "christianchiarulli/nvim-ts-rainbow",
+    {
+        "christianchiarulli/nvim-ts-rainbow",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                highlight = {
+                    -- ...
+                },
+                -- ...
+                rainbow = {
+                    enable = true,
+                    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+                    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+                    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+                    -- colors = {}, -- table of hex strings
+                    -- termcolors = {} -- table of colour name strings
+                },
+            })
+        end,
+    },
 
     -- colorschema
     {
