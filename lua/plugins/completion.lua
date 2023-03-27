@@ -12,7 +12,6 @@ return {
       "hrsh7th/cmp-cmdline",
 
       "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       "onsails/lspkind-nvim",
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true }, -- tailwind color in suggesions
@@ -31,7 +30,6 @@ return {
       local loader = require("luasnip/loaders/from_snipmate")
       loader.lazy_load()
 
-      -- load snippets from path/of/your/nvim/config/my-cool-snippets
       loader.lazy_load({ path = vim.fn.expand("$HOME") .. "/.config/nvim/snippets/" })
 
       require("luasnip/loaders/from_vscode").lazy_load()

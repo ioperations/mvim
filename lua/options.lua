@@ -60,3 +60,6 @@ vim.g.markdown_fenced_languages = {
   "ts=typescript",
   "js=javascript",
 }
+
+-- ~/.locals/share/nvim/lsp.log
+vim.lsp.set_log_level(vim.log.levels.TRACE)

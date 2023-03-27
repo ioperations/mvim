@@ -131,7 +131,7 @@ return {
 
   -- colorschema
   {
-    "folke/tokyonight.nvim",
+    "lunarvim/lunar.nvim",
     -- lazy = true,
     priority = 1000,
     opts = {
@@ -143,10 +143,9 @@ return {
       },
     },
     config = function(_, opts)
-      require("tokyonight").setup(opts) -- opts here are passed from above
-      local colors = require("tokyonight.colors").setup({})
-      vim.cmd("highlight WinSeparator guifg=" .. colors.bg_highlight)
-      vim.cmd([[colorscheme tokyonight]])
+      -- require("tokyonight").setup(opts) -- opts here are passed from above
+      -- vim.cmd("highlight WinSeparator guifg=" .. colors.bg_highlight)
+      vim.cmd([[colorscheme lunar]])
     end,
   },
 
@@ -185,9 +184,14 @@ return {
   -- task
   {
     "tpope/vim-dotenv",
-    "skywind3000/asynctasks.vim",
-    "skywind3000/asyncrun.vim",
     "skywind3000/asyncrun.extra",
     "voldikss/vim-floaterm",
+    "skywind3000/asynctasks.vim",
+    {
+      "skywind3000/asyncrun.vim",
+      config = function()
+        require("scripts")
+      end,
+    },
   },
 }

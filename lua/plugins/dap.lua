@@ -4,14 +4,14 @@ return {
     config = function()
       local Bug = ""
 
-      local ArrowCircleDown = ""
-      local ArrowCircleLeft = ""
+      --     local ArrowCircleDown = ""
+      --     local ArrowCircleLeft = ""
       local ArrowCircleRight = ""
-      local ArrowCircleUp = ""
-      local BoldArrowDown = ""
-      local BoldArrowLeft = ""
-      local BoldArrowRight = ""
-      local BoldArrowUp = ""
+      --     local ArrowCircleUp = ""
+      --     local BoldArrowDown = ""
+      --     local BoldArrowLeft = ""
+      --     local BoldArrowRight = ""
+      --     local BoldArrowUp = ""
       local breakpoint = {
         text = Bug,
         texthl = "DiagnosticSignError",
