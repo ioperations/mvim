@@ -47,18 +47,18 @@ vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown.mdx]])
 
 -- Give me some fenced codeblock goodness
 vim.g.markdown_fenced_languages = {
-  "html",
-  "javascript",
-  "javascriptreact",
-  "typescript",
-  "json",
-  "css",
-  "scss",
-  "lua",
-  "vim",
-  "bash",
-  "ts=typescript",
-  "js=javascript",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "json",
+    "css",
+    "scss",
+    "lua",
+    "vim",
+    "bash",
+    "ts=typescript",
+    "js=javascript",
 }
 
 -- ~/.locals/share/nvim/lsp.log

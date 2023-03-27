@@ -1,5 +1,5 @@
 vim.api.nvim_exec(
-  [[
+    [[
 func! CompileRunGcc()
     let container = "AsyncRun -position=bottomright -pos=floaterm -mode=term -width=0.8 -height=0.6 "
     exec "w"
@@ -55,5 +55,5 @@ func! CompileRunGcc()
     endif
 endfunc
 ]],
-  false
+    false
 )
