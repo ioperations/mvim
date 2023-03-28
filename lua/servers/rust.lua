@@ -14,7 +14,7 @@ M.enable = function()
 
         async.run(function()
             vim.notify(" 🦀 using :MasonInstall codelldb to install codelldb")
-            vim.cmd("MasonInstall codelldb")
+            -- vim.cmd("MasonInstall codelldb")
         end)
     end
 
