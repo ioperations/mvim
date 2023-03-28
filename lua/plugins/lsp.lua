@@ -81,11 +81,12 @@ return {
         {
             "williamboman/mason-lspconfig.nvim",
             config = function()
-                require("mason-lspconfig").setup({})
+                require("mason-lspconfig").setup({
+                    ensure_installed = { "rust_analyzer", "lua_ls", "clangd" },
+                    automatic_installation = true,
+                })
                 --
                 -- automatic_installation is handled by lsp-manager
-                local settings = require("mason-lspconfig.settings")
-                settings.current.automatic_installation = true
 
                 require("mason-lspconfig").setup_handlers({
                     -- The first entry (without a key) will be the default handler
@@ -109,6 +110,8 @@ return {
             end,
             dependencies = {
                 "rcarriga/nvim-notify",
+                "williamboman/mason.nvim",
+                "simrat39/rust-tools.nvim",
             },
         },
     },
