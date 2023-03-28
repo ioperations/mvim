@@ -48,8 +48,6 @@ M.enable = function()
         local running = com:gsub("cargo", "make")
         vim.g.cargo_run_current_test = com
 
-        vim.notify("\n running command " .. running, vim.log.levels.INFO)
-
         vim.cmd("set makeprg=cargo")
 
         vim.cmd(running)
