@@ -114,6 +114,7 @@ return {
                     debounce_hours = 5, -- at least 5 hours between attempts to install/update
                 })
             end,
+            dependency = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
         },
         -- lsp server manager: installation
         {

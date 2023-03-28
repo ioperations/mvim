@@ -2,7 +2,7 @@ return {
     {
         "mfussenegger/nvim-dap",
         config = function()
-            local Bug = ""
+            local Bug = ""
 
             --     local ArrowCircleDown = ""
             --     local ArrowCircleLeft = ""

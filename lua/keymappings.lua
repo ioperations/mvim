@@ -104,7 +104,7 @@ local mappings = {
 
         -- dap
         { "<M-x>", ":Telescope commands<cr>" },
-        { "<M-r>", ":lua require('dap').start()<cr>" },
+        { "<M-r>", ":lua require('dap').run_last()<cr>" },
         { "<M-t>", ":lua require('dap').toggle_breakpoint()<cr>" },
         { "<M-n>", ":lua require('dap').step_over()<cr>" },
         { "<M-o>", ":lua require('dap').step_out()<cr>" },
