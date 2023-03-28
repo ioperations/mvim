@@ -4,14 +4,24 @@ M.enable = function()
     local codelldb_path
     local liblldb_path
 
+    local mason_root_dir = require("mason.settings").current.install_root_dir
+    local extension_path = mason_root_dir .. "/packages/codelldb/extension/"
+    codelldb_path = extension_path .. "adapter/codelldb"
+
+    if vim.fn.empty(vim.fn.glob(codelldb_path)) ~= 0 then
+        -- codelldb is not exists
+        local async = require("plenary.async")
+
+        async.run(function()
+            vim.notify(" 🦀 using :MasonInstall codelldb to install codelldb")
+            vim.cmd("MasonInstall codelldb")
+        end)
+    end
+
     if vim.fn.has("mac") == 1 then
-        local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.8.1/"
-        codelldb_path = extension_path .. "adapter/codelldb"
         liblldb_path = extension_path .. "lldb/lib/liblldb.dylib" -- MacOS: This may be .dylib
     else
-        local extension_path = vim.env.HOME .. "/.vscode-server/extensions/vadimcn.vscode-lldb-1.8.1/"
-        codelldb_path = extension_path .. "adapter/codelldb"
-        liblldb_path = extension_path .. "lldb/lib/liblldb.so" -- MacOS: This may be .dylib
+        liblldb_path = extension_path .. "lldb/lib/liblldb.so"
     end
 
     -- local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")

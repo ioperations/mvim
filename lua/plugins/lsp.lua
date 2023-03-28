@@ -60,6 +60,7 @@ return {
                 require("lsp_lines").setup()
             end,
         },
+        "jose-elias-alvarez/null-ls.nvim",
         -- code action
         {
             "weilbith/nvim-code-action-menu",
@@ -106,6 +107,9 @@ return {
                     end,
                 })
             end,
+            dependencies = {
+                "rcarriga/nvim-notify",
+            },
         },
     },
     -- lsp client configuration [nvim builtin lsc]
