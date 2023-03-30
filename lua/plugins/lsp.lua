@@ -163,7 +163,7 @@ return {
                 })
             end,
             dependencies = {
-                "rcarriga/nvim-notify",
+                --"rcarriga/nvim-notify",
                 "williamboman/mason.nvim",
                 "simrat39/rust-tools.nvim",
             },

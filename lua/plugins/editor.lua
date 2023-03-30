@@ -156,31 +156,31 @@ return {
     },
 
     -- notify
-    {
-        "rcarriga/nvim-notify",
-        opt = {
-            background_colour = "NotifyBackground",
-            fps = 30,
-            icons = {
-                DEBUG = "",
-                ERROR = "",
-                INFO = "",
-                TRACE = "✎",
-                WARN = "",
-            },
-            level = 2,
-            minimum_width = 50,
-            render = "default",
-            -- stages = "fade_in_slide_out",
-            stages = "slide",
-            timeout = 5000,
-            top_down = true,
-        },
-        config = function(_, opt)
-            require("notify").setup(opt)
-            vim.notify = require("notify")
-        end,
-    },
+    --   {
+    --       "rcarriga/nvim-notify",
+    --       opt = {
+    --           background_colour = "NotifyBackground",
+    --           fps = 30,
+    --           icons = {
+    --               DEBUG = "",
+    --               ERROR = "",
+    --               INFO = "",
+    --               TRACE = "✎",
+    --               WARN = "",
+    --           },
+    --           level = 2,
+    --           minimum_width = 50,
+    --           render = "default",
+    --           -- stages = "fade_in_slide_out",
+    --           stages = "slide",
+    --           timeout = 5000,
+    --           top_down = true,
+    --       },
+    --       config = function(_, opt)
+    --           require("notify").setup(opt)
+    --           vim.notify = require("notify")
+    --       end,
+    --   },
 
     -- bufline
     {

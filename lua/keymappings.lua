@@ -43,6 +43,10 @@ local mappings = {
         { "<C-k>", "<esc><cmd>m .-2<CR>==" },
         -- Ctrl single quote for backtick
         { "<C-'>", "``<esc>i" },
+        { "<C-f>", "<right>" },
+        { "<C-b>", "<left>" },
+        { "<C-p>", "<up>" },
+        { "<C-n>", "<down>" },
     },
     n = {
         -- Normal mode
@@ -155,7 +159,6 @@ local mappings = {
     },
     c = {
         { "<C-a>", "<Home>" },
-        { "<C-a>", "<Home>" },
         { "<C-b>", "<Left>" },
         { "<C-d>", "<Del>" },
         { "<C-e>", "<End>" },
@@ -179,3 +182,26 @@ local actions = { "d", "c", "<", ">", "y" }
 for _, a in ipairs(actions) do
     vim.keymap.set("n", a .. "f", a .. "<cmd>lua require'hop'.hint_char1()<cr>")
 end
+
+local function is_lsp_float_open(window_id)
+    return window_id and window_id ~= 0 and vim.api.nvim_win_is_valid(window_id)
+end
+
+local function setkey(mode, origin_key, fallback_key)
+    vim.keymap.set(mode, origin_key, function()
+        local window_id = _G._LSP_SIG_CFG.winnr
+        local mappingf = vim.api.nvim_replace_termcodes(origin_key, true, false, true)
+        local mapping = vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
+
+        if is_lsp_float_open(window_id) then
+            vim.fn.win_execute(window_id, "normal! " .. mappingf)
+        else
+            vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
+        end
+    end, { silent = true })
+end
+
+setkey("i", "<c-f>", "<right>")
+setkey("i", "<c-b>", "<left>")
+setkey("s", "<c-f>", "<right>")
+setkey("s", "<c-b>", "<left>")
