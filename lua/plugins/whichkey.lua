@@ -59,7 +59,7 @@ return {
                 -- trouble bindings
                 t = {
                     name = "Trouble",
-                    t = { "<cmd>TroubleToggle<CR>", "Toggle" },
+                    t = { "<cmd>FloatermNew --width=0.8 --height=0.8 <CR>", "Toggle terminal" },
                     r = { "<cmd>Trouble lsp_references<CR>", "References" },
                     d = { "<cmd>Trouble lsp_definitions<CR>", "Definitions" },
                     q = { "<cmd>Trouble quickfix<CR>", "Quickfix" },
@@ -70,18 +70,8 @@ return {
                 d = {
                     o = { require("dapui").toggle, "debug ui toggle" },
                 },
-                s = { "<cmd>lua vim.o.spell = not vim.o.spell<cr>", "Toggle spell check" },
-                r = { vim.lsp.buf.rename, "Rename" },
+                r = { r = { "<cmd>FloatermNew --width=0.8 --height=0.8 ranger<cr>", "ranger" } },
                 -- Bufferline
-                b = {
-                    name = "Bufferline",
-                    b = { "<cmd>BufferLinePick<CR>", "Pick" },
-                    q = { "<cmd>BufferLinePickClose<CR>", "Pick to close" },
-                    l = { "<cmd>BufferLineCloseRight<CR>", "Close all to right" },
-                    h = { "<cmd>BufferLineCloseLeft<CR>", "Close all to left" },
-                    a = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close all but current" },
-                    p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
-                },
                 g = {
                     d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
                     b = { "<cmd>Git blame<cr>", "Git blame" },
@@ -110,13 +100,6 @@ return {
                     n = { '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" } })<cr>', "next error" },
                     p = { '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" } })<cr>', "next error" },
                     z = { require("lsp_lines").toggle, "Toggle lsp_lines" },
-                },
-                a = {
-                    name = "Auto Sessions",
-                    S = { "<cmd>SaveSession<cr>", "Save session" },
-                    s = { "<cmd>SearchSession<cr>", "Search sessions" },
-                    d = { "<cmd>DeleteSession<cr>", "Delete session" },
-                    r = { "<cmd>RestoreSession<cr>", "Restore session" },
                 },
             }, {
                 prefix = "<leader>",
