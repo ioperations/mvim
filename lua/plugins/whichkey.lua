@@ -99,7 +99,7 @@ return {
                     t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Definition" },
                     n = { '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" } })<cr>', "next error" },
                     p = { '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" } })<cr>', "next error" },
-                    z = { require("lsp_lines").toggle, "Toggle lsp_lines" },
+                    z = { '<cmd>lua require("lsp_lines").toggle<cr>', "Toggle lsp_lines" },
                 },
             }, {
                 prefix = "<leader>",
