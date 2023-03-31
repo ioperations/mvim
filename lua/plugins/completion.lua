@@ -78,6 +78,27 @@ return {
                             fallback()
                         end
                     end, { "i", "c", "s" }),
+                    ["<C-p>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "c", "s" }),
+                    ["<C-n>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "c", "s" }),
+
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
@@ -105,7 +126,7 @@ return {
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
-                    ["<C-e>"] = cmp.mapping.complete(),
+                    ["<C-x>"] = cmp.mapping.complete(),
                     ["<CR>"] = cmp.mapping.confirm({
                         -- behavior = cmp.ConfirmBehavior.Insert,
                         select = true,
