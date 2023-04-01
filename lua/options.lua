@@ -70,4 +70,4 @@ vim.g.markdown_fenced_languages = {
 }
 
 -- ~/.locals/share/nvim/lsp.log
-vim.lsp.set_log_level(vim.log.levels.TRACE)
+-- vim.lsp.set_log_level(vim.log.levels.TRACE)

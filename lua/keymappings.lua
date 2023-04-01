@@ -97,6 +97,7 @@ local mappings = {
         -- window management
         { "<leader>v", ":vsplit<cr>" },
         { "<leader>h", ":split<cr>" },
+        { "<leader>;", ":Alpha<cr>" },
 
         { "n", "nzz" },
         { "N", "Nzz" },
