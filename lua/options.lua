@@ -45,6 +45,14 @@ vim.cmd([[autocmd InsertEnter * norm zz]])
 -- detect mdx file and set file type to markdown
 vim.cmd([[autocmd BufNewFile,BufRead *.mdx set filetype=markdown.mdx]])
 
+-- Restore cursor position
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+    pattern = { "*" },
+    callback = function()
+        vim.api.nvim_exec('silent! normal! g`"zv', false)
+    end,
+})
+
 -- Give me some fenced codeblock goodness
 vim.g.markdown_fenced_languages = {
     "html",
