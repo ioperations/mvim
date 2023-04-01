@@ -49,6 +49,7 @@ local mappings = {
         { "<C-n>", "<down>" },
         { "<C-a>", "<c-o>I" },
         { "<C-e>", "<c-o>A" },
+        { "<C-s>", "<c-o>:w<cr>" },
     },
     n = {
         -- Normal mode
