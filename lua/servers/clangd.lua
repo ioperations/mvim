@@ -1,4 +1,7 @@
 M = {}
+local homebrew_llvm_version = "16.0.0"
+local llvm_version = "16"
+
 M.enable = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -48,11 +51,19 @@ M.enable = function()
                     "-isystem/usr/local/include",
                     "-isystem/opt/homebrew/opt/llvm/bin/../include/c++/v1",
                     "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
-                    "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk/System/Library/Frameworks",
-                    "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk/usr/include",
-                    "-isystem/opt/homebrew/Cellar/llvm/15.0.7_1/lib/clang/15.0.7_1/include",
-                    "/opt/homebrew/Cellar/llvm/15.0.7_1/lib/clang/15.0.7_1/include",
-                    "-I/opt/homebrew/Cellar/llvm/15.0.7_1/include",
+                    "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks",
+                    "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+                    "-isystem/opt/homebrew/Cellar/llvm/"
+                        .. homebrew_llvm_version
+                        .. "/lib/clang/"
+                        .. llvm_version
+                        .. "/include",
+                    "-I/opt/homebrew/Cellar/llvm/"
+                        .. homebrew_llvm_version
+                        .. "/lib/clang/"
+                        .. llvm_version
+                        .. "/include",
+                    "-I/opt/homebrew/Cellar/llvm/" .. homebrew_llvm_version .. "/include",
                     "-Wall",
                     "-DTEST_ADQ",
                     "-Wall",
