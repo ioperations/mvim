@@ -23,6 +23,11 @@ return {
         end,
     },
 
-    "airblade/vim-gitgutter",
+    {
+        "airblade/vim-gitgutter",
+        config = function()
+            vim.opt.updatetime = 400
+        end,
+    },
     "tpope/vim-fugitive",
 }
