@@ -88,7 +88,7 @@ return {
                 },
                 l = {
                     name = "LSP",
-                    f = { "lua vim.lsp.buf.format({ async = true })<cr>", "Format File" },
+                    f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format File" },
                     R = { vim.lsp.buf.rename, "Rename" },
                     D = { vim.lsp.buf.declaration, "declaration" },
                     d = { "<cmd>Telescope lsp_definitions<cr>", "Definition" },
