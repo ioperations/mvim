@@ -85,6 +85,7 @@ return {
                         { "bash-language-server", auto_update = true },
 
                         "codelldb",
+                        "cpptools",
                     },
 
                     -- if set to true this will check each tool for updates. If updates

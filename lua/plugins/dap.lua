@@ -28,6 +28,159 @@ return {
             vim.fn.sign_define("DapBreakpoint", breakpoint)
             vim.fn.sign_define("DapBreakpointRejected", breakpoint)
             vim.fn.sign_define("DapStopped", stopped)
+            local dap = require("dap")
+            dap.set_log_level("TRACE")
+
+            local mason_root_dir = require("mason.settings").current.install_root_dir
+            local lldb_path = mason_root_dir .. "/packages/codelldb/extension/adapter/codelldb"
+
+            dap.adapters.codelldb = {
+                type = "server",
+                port = "${port}",
+                executable = {
+                    -- CHANGE THIS to your path!
+                    command = lldb_path,
+                    args = { "--port", "${port}" },
+
+                    -- On windows you may have to uncomment this:
+                    -- detached = false,
+                },
+            }
+
+            -- FIXME: expect only one directory in /opt/homebrew/Cellar/llvm/
+            local lldb_vscode_home = vim.fn.expand("/opt/homebrew/Cellar/llvm/*")
+
+            local lldb_vscode = lldb_vscode_home .. "/bin/lldb-vscode"
+            if vim.fn.filereadable(lldb_vscode) ~= 1 then
+                -- check file path
+                if vim.fn.executable("lldb-vscode") == 1 then
+                    lldb_vscode = vim.fn.exepath("lldb-vscode")
+                else
+                    vim.notify("llvm-vscode should in your $PATH variable")
+                end
+            end
+
+            dap.adapters.lldb_vscode = {
+                type = "executable",
+                command = lldb_vscode, -- adjust as needed, must be absolute path
+                name = "lldb_vscode",
+            }
+
+            local OpenDebugAD7 = mason_root_dir .. "/bin/OpenDebugAD7"
+            dap.adapters.cppdbg = {
+                id = "cppdbg",
+                type = "executable",
+                command = OpenDebugAD7,
+            }
+
+            dap.configurations.cpp = {
+                {
+                    name = "lldb vscode Launch",
+                    type = "lldb_vscode",
+                    request = "launch",
+                    --                   program = function()
+                    --                       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    --                   end,
+                    program = "${fileDirname}/${fileBasenameNoExtension}",
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = true,
+                    args = {},
+                },
+                {
+                    name = "lldb launch",
+                    type = "codelldb",
+                    request = "launch",
+                    program = "${fileDirname}/${fileBasenameNoExtension}",
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = true,
+                    args = {},
+                },
+
+                {
+                    name = "lldb launch: manually program",
+                    type = "codelldb",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    end,
+                    cwd = "${workspaceFolder}",
+                    stopOnEntry = true,
+                    args = {},
+                },
+                {
+                    name = "gdb launch",
+                    type = "cppdbg",
+                    request = "launch",
+                    program = "${fileDirname}/${fileBasenameNoExtension}",
+                    cwd = "${workspaceFolder}",
+                    stopAtEntry = true,
+                    setupCommands = {
+                        {
+                            text = "-enable-pretty-printing",
+                            description = "enable pretty printing",
+                            ignoreFailures = false,
+                        },
+                    },
+                },
+                {
+                    name = "gdb launch: manually program",
+                    type = "cppdbg",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    end,
+                    cwd = "${workspaceFolder}",
+                    stopAtEntry = true,
+                    setupCommands = {
+                        {
+                            text = "-enable-pretty-printing",
+                            description = "enable pretty printing",
+                            ignoreFailures = false,
+                        },
+                    },
+                },
+
+                {
+                    name = "Attach to gdbserver :1234",
+                    type = "cppdbg",
+                    request = "launch",
+                    MIMode = "gdb",
+                    miDebuggerServerAddress = "localhost:1234",
+                    miDebuggerPath = "/usr/bin/gdb",
+                    stopAtEntry = true,
+                    program = "${fileDirname}/${fileBasenameNoExtension}",
+                    cwd = "${workspaceFolder}",
+                    setupCommands = {
+                        {
+                            text = "-enable-pretty-printing",
+                            description = "enable pretty printing",
+                            ignoreFailures = false,
+                        },
+                    },
+                },
+                {
+                    name = "Attach to gdbserver :1234: manually program",
+                    type = "cppdbg",
+                    request = "launch",
+                    MIMode = "gdb",
+                    miDebuggerServerAddress = "localhost:1234",
+                    miDebuggerPath = "/usr/bin/gdb",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    end,
+                    cwd = "${workspaceFolder}",
+                    stopAtEntry = true,
+                    setupCommands = {
+                        {
+                            text = "-enable-pretty-printing",
+                            description = "enable pretty printing",
+                            ignoreFailures = false,
+                        },
+                    },
+                },
+            }
+            dap.configurations.c = dap.configurations.cpp
+            dap.configurations.rust = dap.configurations.cpp
         end,
     },
     {

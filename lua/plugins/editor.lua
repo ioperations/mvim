@@ -170,27 +170,6 @@ return {
         end,
     },
 
-    -- looking
-    {
-        "christianchiarulli/nvim-ts-rainbow",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                highlight = {
-                    -- ...
-                },
-                -- ...
-                rainbow = {
-                    enable = true,
-                    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-                    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-                    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-                    -- colors = {}, -- table of hex strings
-                    -- termcolors = {} -- table of colour name strings
-                },
-            })
-        end,
-    },
-
     -- colorschema
     {
         "lunarvim/lunar.nvim",
@@ -262,12 +241,48 @@ return {
     },
 
     -- todo fix etc
-    { "numToStr/Comment.nvim", opts = {} },
     {
         "folke/todo-comments.nvim",
         config = function()
-            require("todo-comments").setup()
+            require("todo-comments").setup({
+                keywords = {
+                    FIX = {
+                        icon = " ", -- icon used for the sign, and in search results
+                        color = "error", -- can be a hex color, or a named color (see below)
+                        alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+                        -- signs = false, -- configure signs for some keywords individually
+                    },
+                    TODO = { icon = " ", color = "info" },
+                    HACK = { icon = " ", color = "warning" },
+                    WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+                    PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+                    TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+                },
+            })
         end,
+        dependencies = { -- looking
+            { "numToStr/Comment.nvim" },
+            {
+                "christianchiarulli/nvim-ts-rainbow",
+                config = function()
+                    require("nvim-treesitter.configs").setup({
+                        highlight = {
+                            -- ...
+                        },
+                        -- ...
+                        rainbow = {
+                            enable = true,
+                            -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+                            extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+                            max_file_lines = nil, -- Do not enable for files with more than n lines, int
+                            -- colors = {}, -- table of hex strings
+                            -- termcolors = {} -- table of colour name strings
+                        },
+                    })
+                end,
+            },
+        },
     },
 
     -- task
