@@ -297,6 +297,20 @@ return {
             "junegunn/fzf.vim",
         },
     },
+    -- markdown preview
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        config = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+
+            if vim.fn.has("mac") == 1 then
+                vim.g.mkdp_browser = "/Applications/Firefox.app/Contents/MacOS/firefox"
+            else
+                vim.g.mkdp_browser = "firefox"
+            end
+        end,
+    },
 
     -- task
     {
