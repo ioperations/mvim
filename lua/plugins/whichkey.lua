@@ -54,6 +54,7 @@ return {
                     u = "Undo Changes",
                 },
                 e = { "<cmd>NvimTreeToggle<CR>", "File Tree" },
+                p = { "<cmd>Zi<cr>", "go to path" },
                 u = { "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>", "Undotree" },
                 L = { "<cmd>Lazy<CR>", "Lazy" },
                 -- trouble bindings

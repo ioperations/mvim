@@ -284,6 +284,19 @@ return {
             },
         },
     },
+    -- smater cd
+    {
+        "nanotee/zoxide.vim",
+        dependencies = {
+            {
+                "junegunn/fzf",
+                build = function()
+                    vim.api.nvim_exec([[call fzf#install()]], false)
+                end,
+            },
+            "junegunn/fzf.vim",
+        },
+    },
 
     -- task
     {
