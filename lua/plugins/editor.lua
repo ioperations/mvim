@@ -321,6 +321,7 @@ return {
         {
             "skywind3000/asyncrun.vim",
             config = function()
+                vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                 require("scripts")
             end,
         },

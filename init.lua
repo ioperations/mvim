@@ -1,4 +1,5 @@
 -- basic settings and options
+vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
 require("options")
 
 -- Install package manager
@@ -21,5 +22,6 @@ local lazy_opts = { ui = { border = "rounded" } }
 
 require("lazy").setup("plugins", lazy_opts)
 
+vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
 -- keymappings
 require("keymappings")
