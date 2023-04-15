@@ -164,12 +164,17 @@ return {
                         vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.clangd").enable()
                     end,
+                    ["yamlls"] = function()
+                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
+                        require("servers.yaml").enable()
+                    end,
                 })
             end,
             dependencies = {
                 --"rcarriga/nvim-notify",
                 "williamboman/mason.nvim",
                 "simrat39/rust-tools.nvim",
+                "b0o/SchemaStore.nvim",
             },
         },
     },
