@@ -18,7 +18,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_opts = { ui = { border = "rounded" } }
+local lazy_opts = { ui = { border = "rounded" }, lockfile = vim.fn.expand("$HOME") .. "/.config/mvim/lazy-lock.json" }
 
 require("lazy").setup("plugins", lazy_opts)
 

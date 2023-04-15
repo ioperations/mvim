@@ -34,13 +34,13 @@ local mappings = {
         { "jj", "<ESC>" },
         { "jk", "<ESC>" },
         -- Terminal window navigation
-        { "<C-h>", "<C-\\><C-N><C-w>h" },
-        { "<C-j>", "<C-\\><C-N><C-w>j" },
-        { "<C-k>", "<C-\\><C-N><C-w>k" },
-        { "<C-l>", "<C-\\><C-N><C-w>l" },
+        --   { "<C-h>", "<C-\\><C-N><C-w>h" },
+        --   { "<C-j>", "<C-\\><C-N><C-w>j" },
+        --   { "<C-k>", "<C-\\><C-N><C-w>k" },
+        --   { "<C-l>", "<C-\\><C-N><C-w>l" },
         -- moving text
-        { "<C-j>", "<esc><cmd>m .+1<CR>==" },
-        { "<C-k>", "<esc><cmd>m .-2<CR>==" },
+        --   { "<C-j>", "<esc><cmd>m .+1<CR>==" },
+        --   { "<C-k>", "<esc><cmd>m .-2<CR>==" },
         -- Ctrl single quote for backtick
         { "<C-'>", "``<esc>i" },
         { "<C-f>", "<right>" },
@@ -74,7 +74,7 @@ local mappings = {
         { "<leader>n", "<cmd>noh<cr><esc>" },
         -- hop words
         { "s", "<cmd>HopWord<cr>" },
-        { "f", "<cmd>HopLine<cr>" },
+        { "F", "<cmd>HopLine<cr>" },
         -- yank to end of line on Y
         { "Y", "y$" },
         -- lsp mappings
@@ -205,7 +205,8 @@ local function setkey(mode, origin_key, fallback_key)
     end, { silent = true })
 end
 
-setkey("i", "<c-f>", "<right>")
-setkey("i", "<c-b>", "<left>")
-setkey("s", "<c-f>", "<right>")
-setkey("s", "<c-b>", "<left>")
+setkey("i", "<c-d>", "<Del>")
+setkey("i", "<c-u>", "<left>")
+
+setkey("s", "<c-d>", "<Del>")
+setkey("s", "<c-u>", "<left>")
