@@ -6,6 +6,7 @@ M.enable = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.offsetEncoding = "utf-8"
 
     local on_attach = function(client, bufnr)
         --   local wk = require("which-key")

@@ -79,13 +79,31 @@ return {
                     ensure_installed = {
 
                         -- you can pin a tool to a particular version
-                        { "golangci-lint", version = "v1.47.0" },
+                        { "golangci-lint" },
 
                         -- you can turn off/on auto_update per tool
                         { "bash-language-server", auto_update = true },
 
                         "codelldb",
                         "cpptools",
+                        "lua-language-server",
+                        "vim-language-server",
+                        "gopls",
+                        "stylua",
+                        "shellcheck",
+                        "editorconfig-checker",
+                        "gofumpt",
+                        "golines",
+                        "gomodifytags",
+                        "gotests",
+                        "impl",
+                        "json-to-struct",
+                        "misspell",
+                        "revive",
+                        "shellcheck",
+                        "shfmt",
+                        "staticcheck",
+                        "vint",
                     },
 
                     -- if set to true this will check each tool for updates. If updates
@@ -112,7 +130,7 @@ return {
                     -- This is only relevant when you are using 'run_on_start'. It has no
                     -- effect when running manually via ':MasonToolsInstall' etc....
                     -- Default: nil
-                    debounce_hours = 5, -- at least 5 hours between attempts to install/update
+                    debounce_hours = 1, -- at least 5 hours between attempts to install/update
                 })
             end,
             dependency = { "WhoIsSethDaniel/mason-tool-installer.nvim" },
@@ -132,12 +150,32 @@ return {
                 })
             end,
         },
+        {
+            "ray-x/go.nvim",
+            dependencies = "ray-x/guihua.lua",
+            config = function()
+                require("go").setup({
+                    lsp_cfg = false,
+                })
+                local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    pattern = "*.go",
+                    callback = function()
+                        require("go.format").goimport()
+                    end,
+                    group = format_sync_grp,
+                })
+            end,
+            event = { "CmdlineEnter" },
+            ft = { "go", "gomod" },
+            build = ':lua require("go.install").update_all_sync()',
+        },
         -- lsp server manager: automatic setup
         {
             "williamboman/mason-lspconfig.nvim",
             config = function()
                 require("mason-lspconfig").setup({
-                    ensure_installed = { "rust_analyzer", "lua_ls", "clangd" },
+                    ensure_installed = { "rust_analyzer@nightly", "taplo", "lua_ls", "clangd", "gopls" },
                     automatic_installation = true,
                 })
                 --
@@ -164,9 +202,17 @@ return {
                         vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.clangd").enable()
                     end,
+                    ["gopls"] = function()
+                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
+                        require("servers.gopls").enable()
+                    end,
                     ["yamlls"] = function()
                         vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.yaml").enable()
+                    end,
+                    ["jsonls"] = function()
+                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
+                        require("servers.json").enable()
                     end,
                 })
             end,
