@@ -74,9 +74,12 @@ return {
                 r = { r = { "<cmd>FloatermNew --width=0.8 --height=0.8 ranger<cr>", "ranger" } },
                 -- Bufferline
                 g = {
-                    d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+                    a = { "<cmd>Git add .<cr>", "Git add" },
+                    c = { "<cmd>Git commit<cr>", "Git commit" },
+                    d = { "<cmd>Gdiffsplit<cr>", "Git Diff" },
                     b = { "<cmd>Git blame<cr>", "Git blame" },
-
+                    p = { "<cmd>Git push<cr>", "Git push" },
+                    P = { "<cmd>Git pull<cr>", "Git pull" },
                     m = { require("gitsigns").blame_line, "git message" },
                 },
                 S = {
@@ -100,7 +103,6 @@ return {
                     t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Definition" },
                     n = { '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" } })<cr>', "next error" },
                     p = { '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" } })<cr>', "next error" },
-                    z = { '<cmd>lua require("lsp_lines").toggle<cr>', "Toggle lsp_lines" },
                 },
             }, {
                 prefix = "<leader>",
