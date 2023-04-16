@@ -47,12 +47,6 @@ return {
                     T = { "<cmd>TodoTelescope<CR>", "Search Todos" },
                     e = { "<cmd>Telescope file_browser<CR>", "Browse Files" },
                 },
-                h = {
-                    name = "Git Gutter",
-                    p = "Preview Hunk",
-                    s = "Stage Hunk",
-                    u = "Undo Changes",
-                },
                 e = { "<cmd>NvimTreeToggle<CR>", "File Tree" },
                 p = { "<cmd>Zi<cr>", "go to path" },
                 u = { "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>", "Undotree" },
@@ -79,16 +73,9 @@ return {
                     d = { "<cmd>Gdiffsplit<cr>", "Git Diff" },
                     b = { "<cmd>Git blame<cr>", "Git blame" },
                     p = { "<cmd>Git push<cr>", "Git push" },
+                    s = { "<cmd>Git status<cr>", "Git status" },
                     P = { "<cmd>Git pull<cr>", "Git pull" },
                     m = { require("gitsigns").blame_line, "git message" },
-                },
-                S = {
-                    name = "Spectre - find and replace",
-                    s = { "<cmd>lua require('spectre').open_visual()<CR>", "Open Spectre" },
-                    w = {
-                        "<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
-                        "Search for word under cursor",
-                    },
                 },
                 l = {
                     name = "LSP",

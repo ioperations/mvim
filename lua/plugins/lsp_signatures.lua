@@ -6,7 +6,8 @@ return {
             -- bind = true, -- This is mandatory, otherwise border config won't get registered.
             -- handler_opts = { border = "rounded" },
             hint_prefix = "🐶 ",
-            hi_parameter = "LspSignatureActiveParameter",
+            -- hi_parameter = "LspSignatureActiveParameter",
+            hi_parameter = "Comment",
             -- LspSignatureActiveParameter
             debug = false, -- set to true to enable debug logging
             log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
