@@ -124,8 +124,8 @@ local mappings = {
         -- bufferline
         { "<tab>", "<cmd>BufferLineCyclePrev<CR>" },
         { "<s-tab>", "<cmd>BufferLineCycleNext<CR>" },
-        { "<C-d>", "<C-d>zz" },
-        { "<C-u>", "<C-u>zz" },
+        -- { "<C-d>", "<C-d>zz" },
+        --       { "<C-u>", "<C-u>zz" },
         -- Remap for dealing with line wrap
         -- { "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, } },
         -- { "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, } },
@@ -141,7 +141,7 @@ local mappings = {
         -- { "<C-l>", "<C-\\><C-N><C-w>l" },
         -- map escape to normal mode in terminal
         -- { "<Esc>", [[ <C-\><C-n> ]] },
-        { "jj", [[ <C-\><C-n> ]] },
+        -- { "jj", [[ <C-\><C-n> ]] },
     },
     v = {
         -- Visual/Select mode
@@ -149,7 +149,7 @@ local mappings = {
         { "<", "<gv" },
         { ">", ">gv" },
         -- hop words
-        { "S", require("hop").hint_words },
+        { "s", require("hop").hint_words },
         { "F", require("hop").hint_lines },
         -- moving text
         { "J", "<cmd>m '>+1<CR>gv=gv" },
@@ -193,9 +193,13 @@ end
 
 local function setkey(mode, origin_key, fallback_key)
     vim.keymap.set(mode, origin_key, function()
+        local mapping = vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
+        if _G._LSP_SIG_CFG == nil then
+            vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
+            return
+        end
         local window_id = _G._LSP_SIG_CFG.winnr
         local mappingf = vim.api.nvim_replace_termcodes(origin_key, true, false, true)
-        local mapping = vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
 
         if is_lsp_float_open(window_id) then
             vim.fn.win_execute(window_id, "normal! " .. mappingf)
