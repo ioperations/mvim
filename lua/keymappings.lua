@@ -99,12 +99,12 @@ local mappings = {
         { "<leader>h", ":split<cr>" },
         { "<leader>;", ":Alpha<cr>" },
 
-        { "n", "nzz" },
-        { "N", "Nzz" },
-        { "*", "*zz" },
-        { "#", "#zz" },
-        { "g*", "g*zz" },
-        { "g#", "g#zz" },
+        --{ "n", "nzz" },
+        --{ "N", "Nzz" },
+        --{ "*", "*zz" },
+        --{ "#", "#zz" },
+        --{ "g*", "g*zz" },
+        --{ "g#", "g#zz" },
         { "Q", "<cmd>q!<CR>" },
         { "<c-q>", "<cmd>qall!<CR>" },
         { "<c-s>", "<cmd>w!<CR>" },
@@ -193,6 +193,8 @@ end
 
 local function setkey(mode, origin_key, fallback_key)
     vim.keymap.set(mode, origin_key, function()
+        assert(_G ~= nil, "_G should exists ")
+
         local mapping = vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
         if _G._LSP_SIG_CFG == nil then
             vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
