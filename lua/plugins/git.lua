@@ -63,6 +63,13 @@ return {
             })
         end,
     },
+    {
+        "kdheepak/lazygit.nvim",
+        config = function()
+            require("telescope").load_extension("lazygit")
+            vim.api.nvim_exec([[autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()]], false)
+        end,
+    },
 
     -- {
     --     "airblade/vim-gitgutter",
