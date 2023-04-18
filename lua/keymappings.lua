@@ -140,7 +140,7 @@ local mappings = {
         -- { "<C-k>", "<C-\\><C-N><C-w>k" },
         -- { "<C-l>", "<C-\\><C-N><C-w>l" },
         -- map escape to normal mode in terminal
-        { "<Esc>", [[ <C-\><C-n> ]] },
+        { "<esc>", "<C-\\><C-n>" },
         -- { "jj", [[ <C-\><C-n> ]] },
     },
     v = {
