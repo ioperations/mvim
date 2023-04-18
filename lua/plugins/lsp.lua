@@ -8,10 +8,35 @@ return {
                     -- border = "rounded",
                     blend = 0,
                 },
+                text = {
+                    spinner = {
+                        ">▱▱▱▱▱▱",
+                        ">>▱▱▱▱▱",
+                        ">>>▱▱▱▱",
+                        "▱>>>▱▱▱",
+                        "▱▱>>>▱▱",
+                        "▱▱▱>>>▱",
+                        "▱▱▱▱>>>",
+                        "▱▱▱▱▱>>",
+                        "▱▱▱▱▱▱>",
+                        "▱▱▱▱▱▱▱",
+                    },
+                },
             },
         },
         -- status
-        { "nvim-lua/lsp-status.nvim", lazy = true },
+        {
+            "nvim-lua/lsp-status.nvim",
+            config = function()
+                require("lsp-status").config({
+                    status_symbol = "  ",
+                    indicator_ok = "",
+                    indicator_errors = "",
+                    indicator_warnings = "",
+                    pinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+                })
+            end,
+        },
 
         -- winbar
         {
