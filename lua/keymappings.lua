@@ -49,7 +49,7 @@ local mappings = {
         { "<C-n>", "<down>" },
         { "<C-a>", "<c-o>I" },
         { "<C-e>", "<c-o>A" },
-        { "<C-s>", "<c-o>:w<cr>" },
+        { "<C-s>", "<esc>:w<cr>" },
     },
     n = {
         -- Normal mode
@@ -68,6 +68,7 @@ local mappings = {
         { "<right>", ":vertical resize +5<cr>" },
 
         -- Ctrl + p fuzzy files
+        { "<C-l>", "<nop" },
         { "<C-p>", telescope_find_files },
         { "<C-g>", "<cmd>Telescope live_grep<cr>" },
         -- escape clears highlighting
