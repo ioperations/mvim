@@ -58,8 +58,8 @@ return {
             "saadparwaiz1/cmp_luasnip", -- snippets completions
             "L3MON4D3/LuaSnip",
             "hrsh7th/cmp-nvim-lsp",
-            --"hrsh7th/cmp-buffer",
-            "FelipeLema/cmp-async-path",
+            "hrsh7th/cmp-buffer",
+            -- "FelipeLema/cmp-async-path",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-emoji",
             -- "lukas-reineke/cmp-rg",
@@ -185,26 +185,26 @@ return {
                     }),
                 },
                 sources = cmp.config.sources({
+                    { name = "luasnip" },
                     { name = "nvim_lsp" },
                     { name = "copilot" },
-                    { name = "luasnip" },
-                    { name = "async_path" },
+                    { name = "buffer" },
                     { name = "emoji" },
-                    {
-                        name = "fuzzy_buffer",
-                        option = {
-                            get_bufnrs = function()
-                                local bufs = {}
-                                for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                                    local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-                                    if buftype ~= "nofile" and buftype ~= "prompt" then
-                                        bufs[#bufs + 1] = buf
-                                    end
-                                end
-                                return bufs
-                            end,
-                        },
-                    },
+                    -- {
+                    --     name = "fuzzy_buffer",
+                    --     option = {
+                    --         get_bufnrs = function()
+                    --             local bufs = {}
+                    --             for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                    --                 local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
+                    --                 if buftype ~= "nofile" and buftype ~= "prompt" then
+                    --                     bufs[#bufs + 1] = buf
+                    --                 end
+                    --             end
+                    --             return bufs
+                    --         end,
+                    --     },
+                    -- },
                 }),
                 experimental = {
                     ghost_text = true,

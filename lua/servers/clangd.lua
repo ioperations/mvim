@@ -22,19 +22,19 @@ M.enable = function()
         server = {
             -- options to pass to nvim-lspconfig
             on_attach = on_attach,
-            sources = {
-                { name = "nvim_lsp" },
-                { name = "path" },
-                { name = "luasnip" },
-                { name = "cmp_tabnine" },
-                { name = "nvim_lua" },
-                { name = "buffer" },
-                { name = "calc" },
-                { name = "emoji" },
-                { name = "treesitter" },
-                { name = "crates" },
-                { name = "tmux" },
-            },
+            --sources = {
+            --    { name = "nvim_lsp" },
+            --    { name = "path" },
+            --    { name = "luasnip" },
+            --    { name = "cmp_tabnine" },
+            --    { name = "nvim_lua" },
+            --    { name = "buffer" },
+            --    { name = "calc" },
+            --    { name = "emoji" },
+            --    { name = "treesitter" },
+            --    { name = "crates" },
+            --    { name = "tmux" },
+            --},
             cmd = {
                 "clangd",
                 "--background-index",
