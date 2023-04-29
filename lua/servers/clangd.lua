@@ -1,5 +1,5 @@
 M = {}
-local homebrew_llvm_version = "16.0.0"
+local homebrew_llvm_version = "16.0.1"
 local llvm_version = "16"
 
 M.enable = function()
@@ -54,17 +54,9 @@ M.enable = function()
                     "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
                     "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks",
                     "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
-                    "-isystem/opt/homebrew/Cellar/llvm/"
-                        .. homebrew_llvm_version
-                        .. "/lib/clang/"
-                        .. llvm_version
-                        .. "/include",
-                    "-I/opt/homebrew/Cellar/llvm/"
-                        .. homebrew_llvm_version
-                        .. "/lib/clang/"
-                        .. llvm_version
-                        .. "/include",
-                    "-I/opt/homebrew/Cellar/llvm/" .. homebrew_llvm_version .. "/include",
+                    "-isystem/opt/homebrew/opt/llvm/" .. "/lib/clang/" .. llvm_version .. "/include",
+                    "-I/opt/homebrew/opt/llvm/" .. "/lib/clang/" .. llvm_version .. "/include",
+                    "-I/opt/homebrew/opt/llvm/" .. llvm_version .. "/include",
                     "-Wall",
                     "-DTEST_ADQ",
                     "-Wall",
