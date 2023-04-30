@@ -59,9 +59,9 @@ return {
             "L3MON4D3/LuaSnip",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            -- "FelipeLema/cmp-async-path",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-emoji",
+            -- "FelipeLema/cmp-async-path",
             -- "lukas-reineke/cmp-rg",
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
@@ -103,7 +103,7 @@ return {
             local loader = require("luasnip/loaders/from_snipmate")
             loader.lazy_load()
 
-            loader.lazy_load({ path = vim.fn.expand("$HOME") .. "/.config/nvim/snippets/" })
+            loader.lazy_load({ path = vim.fn.expand("$HOME") .. "/.config/mvim/snippets/" })
 
             require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -177,7 +177,7 @@ return {
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
-                    ["<C-;>"] = cmp.mapping.complete(),
+                    ["<C-c>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({
                         -- behavior = cmp.ConfirmBehavior.Insert,
@@ -190,21 +190,6 @@ return {
                     { name = "copilot" },
                     { name = "buffer" },
                     { name = "emoji" },
-                    -- {
-                    --     name = "fuzzy_buffer",
-                    --     option = {
-                    --         get_bufnrs = function()
-                    --             local bufs = {}
-                    --             for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                    --                 local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-                    --                 if buftype ~= "nofile" and buftype ~= "prompt" then
-                    --                     bufs[#bufs + 1] = buf
-                    --                 end
-                    --             end
-                    --             return bufs
-                    --         end,
-                    --     },
-                    -- },
                 }),
                 experimental = {
                     ghost_text = true,

@@ -190,33 +190,6 @@ return {
         end,
     },
 
-    -- notify
-    --   {
-    --       "rcarriga/nvim-notify",
-    --       opt = {
-    --           background_colour = "NotifyBackground",
-    --           fps = 30,
-    --           icons = {
-    --               DEBUG = "",
-    --               ERROR = "",
-    --               INFO = "",
-    --               TRACE = "✎",
-    --               WARN = "",
-    --           },
-    --           level = 2,
-    --           minimum_width = 50,
-    --           render = "default",
-    --           -- stages = "fade_in_slide_out",
-    --           stages = "slide",
-    --           timeout = 5000,
-    --           top_down = true,
-    --       },
-    --       config = function(_, opt)
-    --           require("notify").setup(opt)
-    --           vim.notify = require("notify")
-    --       end,
-    --   },
-
     -- bufline
     {
         "akinsho/bufferline.nvim",
@@ -247,7 +220,7 @@ return {
             require("todo-comments").setup({
                 keywords = {
                     FIX = {
-                        icon = " ", -- icon used for the sign, and in search results
+                        icon = "", -- icon used for the sign, and in search results
                         color = "error", -- can be a hex color, or a named color (see below)
                         alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                         -- signs = false, -- configure signs for some keywords individually
