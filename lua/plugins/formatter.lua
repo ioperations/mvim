@@ -107,7 +107,6 @@ return {
                     "*.go",
                     "*.rs",
                     "*.astro",
-                    "*.cpp",
                     "*.cc",
                 },
                 command = "FormatWrite",
