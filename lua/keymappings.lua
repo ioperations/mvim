@@ -67,6 +67,18 @@ local mappings = {
         { "<left>", ":vertical resize -5<cr>" },
         { "<right>", ":vertical resize +5<cr>" },
 
+        -- lsp
+        { "gR", vim.lsp.buf.rename },
+        { "gD", vim.lsp.buf.declaration },
+        { "gd", "<cmd>Telescope lsp_definitions<cr>" },
+        { "gr", "<cmd>Telescope lsp_references<cr>" },
+        { "gi", "<cmd>Telescope lsp_implementations<cr>" },
+        { "ga", "<cmd>CodeActionMenu<cr>" },
+        { "gl", "<cmd>lua vim.lsp.codelens.run()<cr>" },
+        { "gt", "<cmd>Telescope lsp_type_definitions<cr>" },
+        { "gn", '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" } })<cr>' },
+        { "gp", '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" } })<cr>' },
+
         -- Ctrl + p fuzzy files
         { "<C-l>", "<nop" },
         { "<C-p>", telescope_find_files },
