@@ -141,6 +141,9 @@ return {
 
                         -- you can pin a tool to a particular version
                         { "golangci-lint" },
+                        { "pyright" },
+                        { "debugpy" },
+                        { "cmake-language-server" },
 
                         -- you can turn off/on auto_update per tool
                         { "bash-language-server", auto_update = true },
@@ -236,7 +239,13 @@ return {
             "williamboman/mason-lspconfig.nvim",
             config = function()
                 require("mason-lspconfig").setup({
-                    ensure_installed = { "rust_analyzer@nightly", "taplo", "lua_ls", "clangd", "gopls" },
+                    ensure_installed = {
+                        "rust_analyzer@nightly",
+                        "taplo",
+                        "lua_ls",
+                        "clangd",
+                        "gopls",
+                    },
                     automatic_installation = true,
                 })
                 --

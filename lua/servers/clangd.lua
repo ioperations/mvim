@@ -1,5 +1,5 @@
 M = {}
-local homebrew_llvm_version = "16.0.1"
+local homebrew_llvm_version = "16.0.4"
 local llvm_version = "16"
 
 M.enable = function()

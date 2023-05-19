@@ -56,13 +56,10 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lua", -- nvim config completions
             "saadparwaiz1/cmp_luasnip", -- snippets completions
-            "L3MON4D3/LuaSnip",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-emoji",
-            -- "FelipeLema/cmp-async-path",
-            -- "lukas-reineke/cmp-rg",
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
             {
@@ -187,7 +184,6 @@ return {
                 sources = cmp.config.sources({
                     { name = "luasnip" },
                     { name = "nvim_lsp" },
-                    { name = "copilot" },
                     { name = "buffer" },
                     { name = "emoji" },
                 }),
