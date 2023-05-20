@@ -49,6 +49,15 @@ M.enable = function()
             -- FIXME: seems not working in current lspconfig , should add to ~/.local/share/lunarvim/site/pack/lazy/opt/nvim-lspconfig/lua/lspconfig/server_configurations/clangd.lua
             init_options = {
                 fallbackFlags = {
+                    "-L/usr/local/lib/",
+                    "-isystem/usr/local/include",
+                    "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1",
+                    "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.3/include",
+                    "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+                    "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
+                    "-isystem/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks",
+                    "-O3",
+                    "-stdlib=libc++",
                     "-isystem/usr/local/include",
                     "-isystem/opt/homebrew/opt/llvm/bin/../include/c++/v1",
                     "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
