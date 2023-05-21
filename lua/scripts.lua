@@ -8,7 +8,7 @@ func! CompileRunGcc()
         if has("macunix")
             exec container . " clang % -DTEST_ADQ -I /usr/local/opt/llvm/include/c++/v1/ " . DotenvGet('CLANG_C_FLAGS') . " -g -fsanitize=address -lm -g -Wall -Wpedantic -o %< && time ./%<"
         elseif has("unix")
-            exec container . " clang % " . DotenvGet('CLANG_C_FLAGS') . " -Wall -Wpedantic -g -o %< && time timeout 30 ./%<"
+            exec container . " clang -DTEST_ADQ % " . DotenvGet('CLANG_C_FLAGS') . " -Wall -Wpedantic -g -o %< && time timeout 30 ./%<"
         endif
     elseif &filetype == 'cpp'
         set splitbelow
@@ -16,7 +16,7 @@ func! CompileRunGcc()
             let v = container . " clang++ -DTEST_ADQ -I /usr/local/opt/llvm/include/c++/v1/ -g -std=c++20 %   -Wall -Wpedantic " . DotenvGet('CLANG_CXX_FLAGS') . " -o %< && time ./%<"
             exec v
         elseif has("unix")
-            exec container . " clang++ % " . DotenvGet('CLANG_CXX_FLAGS') . " -Wall -Wpedantic -g -o %< && time timeout 30 ./%<"
+            exec container . " clang++ -DTEST_ADQ % " . DotenvGet('CLANG_CXX_FLAGS') . " -Wall -Wpedantic -g -o %< && time timeout 30 ./%<"
         endif
     elseif &filetype == 'cuda'
         set splitbelow
