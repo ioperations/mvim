@@ -93,6 +93,7 @@ return {
     --        end,
     --    },
 
+    "ioperations/vim-cppman",
     -- edit enhancement
     "gcmt/wildfire.vim",
     -- multi cursor
