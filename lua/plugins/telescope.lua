@@ -1,12 +1,21 @@
 return {
     -- project
-    --    {
-    --        "ahmedkhalf/project.nvim",
-    --        config = function()
-    --            require("project_nvim").setup()
-    --        end,
-    --        lazy = true,
-    --   },
+    {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup({
+                sync_root_with_cwd = true,
+                respect_buf_cwd = true,
+                update_focused_file = {
+                    enable = true,
+                    update_root = true,
+                },
+
+                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", ".cache" },
+            })
+        end,
+        lazy = true,
+    },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
     { "nvim-telescope/telescope-dap.nvim", lazy = true },
     {
@@ -85,7 +94,7 @@ return {
 
             -- telescope.load_extension("session-lens")
             telescope.load_extension("file_browser")
-            -- telescope.load_extension("projects")
+            telescope.load_extension("projects")
             telescope.load_extension("fzf")
             telescope.load_extension("dap")
         end,
