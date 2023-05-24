@@ -1,3 +1,4 @@
 spell/
 plugin/
 /lazy-lock.json
+/.luarc.json
