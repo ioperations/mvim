@@ -40,7 +40,7 @@ return {
             actions = {
                 use_system_clipboard = true,
                 open_file = {
-                    resize_window = true,
+                    resize_window = false,
                 },
                 change_dir = {
                     enable = false,
