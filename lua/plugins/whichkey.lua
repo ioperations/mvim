@@ -51,6 +51,8 @@ return {
                 p = { "<cmd>Zi<cr>", "go to path" },
                 u = { "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>", "Undotree" },
                 L = { "<cmd>Lazy<CR>", "Lazy" },
+                M = { "<cmd>Mason<CR>", "Mason" },
+                x = { "<cmd>Copilot panel<CR>", "Copy line" },
                 -- trouble bindings
                 t = {
                     name = "Trouble",

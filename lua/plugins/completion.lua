@@ -1,19 +1,6 @@
 return {
     {
-        "zbirenbaum/copilot.lua",
-        config = function()
-            require("copilot").setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-            })
-        end,
-    },
-    {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-        dependencies = "zbirenbaum/copilot.lua",
+        "github/copilot.vim",
     },
     {
         "tamago324/nlsp-settings.nvim",
