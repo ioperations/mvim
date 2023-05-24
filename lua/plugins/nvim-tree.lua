@@ -43,7 +43,7 @@ return {
                     resize_window = false,
                 },
                 change_dir = {
-                    enable = false,
+                    enable = true,
                 },
             },
             renderer = {
