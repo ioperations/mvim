@@ -108,8 +108,8 @@ local mappings = {
         { "<c-k>", "<c-u>" },
         --
         -- window management
-        { "<leader>v", ":vsplit<cr>" },
-        { "<leader>h", ":split<cr>" },
+        { "<leader>v", "<C-w>v<C-w>l" },
+        { "<leader>h", "<C-w>s<C-w>j" },
         { "<leader>;", ":Alpha<cr>" },
 
         --{ "n", "nzz" },
