@@ -180,20 +180,20 @@ return {
                 window = {
                     documentation = cmp.config.window.bordered(),
                 },
-                sorting = {
-                    priority_weight = 2,
-                    comparators = {
-                        compare.kind,
-                        compare.score,
-                        compare.recently_used,
-                        compare.offset,
-                        compare.exact,
-                        compare.sort_text,
-                        compare.length,
-                        compare.order,
-                        require("cmp_fuzzy_buffer.compare"),
-                    },
-                },
+                -- sorting = {
+                --    priority_weight = 2,
+                --    comparators = {
+                --        compare.score,
+                --        compare.kind,
+                --        compare.recently_used,
+                --        compare.offset,
+                --        compare.exact,
+                --        compare.sort_text,
+                --        compare.length,
+                --        compare.order,
+                --        require("cmp_fuzzy_buffer.compare"),
+                --    },
+                -- },
             })
 
             -- only enable nvim_lsp in lua files
