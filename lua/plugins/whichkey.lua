@@ -68,6 +68,7 @@ return {
                     o = { require("dapui").toggle, "debug ui toggle" },
                 },
                 r = { r = { "<cmd>FloatermNew --width=0.8 --height=0.8 ranger<cr>", "ranger" } },
+                R = { "<cmd>Telescope resume<cr>", "resume" },
                 -- Bufferline
                 g = {
                     a = { "<cmd>Git add .<cr>", "Git add" },
