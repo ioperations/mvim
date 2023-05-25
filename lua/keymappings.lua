@@ -162,11 +162,11 @@ local mappings = {
         { "<", "<gv" },
         { ">", ">gv" },
         -- hop words
-        { "s", require("hop").hint_words },
-        { "F", require("hop").hint_lines },
+        -- { "s", require("hop").hint_words },
+        -- { "F", require("hop").hint_lines },
         -- moving text
-        { "J", "<cmd>m '>+1<CR>gv=gv" },
-        { "K", "<cmd>m '<-2<CR>gv=gv" },
+        -- { "J", "<cmd>m '>+1<CR>gv=gv" },
+        -- { "K", "<cmd>m '<-2<CR>gv=gv" },
     },
     x = {
         -- remap p to always paste from last yank
