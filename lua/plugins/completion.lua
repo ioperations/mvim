@@ -105,6 +105,7 @@ return {
                         ellipsis_char = "...",
                         maxwidth = 50,
                         before = function(entry, vim_item)
+                            vim_item.abbr = string.gsub(vim_item.abbr, "^%s+", "")
                             vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
                             return vim_item
                         end,
@@ -169,8 +170,8 @@ return {
                     }),
                 },
                 sources = cmp.config.sources({
-                    { name = "luasnip" },
-                    { name = "nvim_lsp" },
+                    { name = "luasnip", priority = 45 },
+                    { name = "nvim_lsp", priority = 20 },
                     { name = "buffer" },
                     { name = "emoji" },
                 }),
@@ -180,20 +181,20 @@ return {
                 window = {
                     documentation = cmp.config.window.bordered(),
                 },
-                -- sorting = {
-                --    priority_weight = 2,
-                --    comparators = {
-                --        compare.score,
-                --        compare.kind,
-                --        compare.recently_used,
-                --        compare.offset,
-                --        compare.exact,
-                --        compare.sort_text,
-                --        compare.length,
-                --        compare.order,
-                --        require("cmp_fuzzy_buffer.compare"),
-                --    },
-                -- },
+                sorting = {
+                    priority_weight = 2,
+                    --    comparators = {
+                    --        compare.score,
+                    --        compare.kind,
+                    --        compare.recently_used,
+                    --        compare.offset,
+                    --        compare.exact,
+                    --        compare.sort_text,
+                    --        compare.length,
+                    --        compare.order,
+                    --        require("cmp_fuzzy_buffer.compare"),
+                    --    },
+                },
             })
 
             -- only enable nvim_lsp in lua files
