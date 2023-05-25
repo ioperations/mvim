@@ -75,7 +75,6 @@ M.enable = function()
             --    "--compile-commands-dir=" .. vim.g.cmake_build_dir }, -- custom build dir
             capabilities = capabilities,
             trace = "verbose",
-            -- FIXME: seems not working in current lspconfig , should add to ~/.local/share/lunarvim/site/pack/lazy/opt/nvim-lspconfig/lua/lspconfig/server_configurations/clangd.lua
             init_options = {
                 fallbackFlags = fallbackFlags,
             },
@@ -86,6 +85,7 @@ M.enable = function()
             autoSetHints = true,
             -- These apply to the default ClangdSetInlayHints command
             inlay_hints = {
+                inline = vim.fn.has("nvim-0.10") == 1,
                 -- Only show inlay hints for the current line
                 only_current_line = false,
                 -- Event which triggers a refersh of the inlay hints.
