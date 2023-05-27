@@ -183,17 +183,18 @@ return {
                 },
                 sorting = {
                     priority_weight = 2,
-                    --    comparators = {
-                    --        compare.score,
-                    --        compare.kind,
-                    --        compare.recently_used,
-                    --        compare.offset,
-                    --        compare.exact,
-                    --        compare.sort_text,
-                    --        compare.length,
-                    --        compare.order,
-                    --        require("cmp_fuzzy_buffer.compare"),
-                    --    },
+                    comparators = {
+                        compare.locality,
+                        compare.score,
+                        compare.kind,
+                        compare.recently_used,
+                        compare.exact,
+                        compare.offset,
+                        compare.sort_text,
+                        compare.length,
+                        compare.order,
+                        require("cmp_fuzzy_buffer.compare"),
+                    },
                 },
             })
 
