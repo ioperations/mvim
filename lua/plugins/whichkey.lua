@@ -44,6 +44,7 @@ return {
                     M = { "<cmd>Telescope man_pages<CR>", "Man pages" },
                     a = { "<cmd>Telescope session-lens search_session<CR>", "Search Sessions" },
                     h = { "<cmd>Telescope help_tags<CR>", "Search help" },
+                    j = { "<cmd>Telescope jumplist<CR>", "jumplist help" },
                     T = { "<cmd>TodoTelescope<CR>", "Search Todos" },
                     e = { "<cmd>Telescope file_browser<CR>", "Browse Files" },
                 },

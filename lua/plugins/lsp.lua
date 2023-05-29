@@ -359,7 +359,7 @@ return {
                 if val < 16 then
                     height = val
                 end
-                vim.api.nvim_win_set_height(winnr, height)
+                vim.api.nvim_win_set_height(winnr, height + 1)
 
                 return bufnr, winnr
             end
