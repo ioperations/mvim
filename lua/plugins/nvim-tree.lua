@@ -96,8 +96,8 @@ return {
                 icons = {
                     hint = " ",
                     info = " ",
-                    warning = " ",
-                    error = " ",
+                    warning = " ",
+                    error = "",
                 },
             },
         },
