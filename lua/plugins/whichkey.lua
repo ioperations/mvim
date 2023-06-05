@@ -77,7 +77,7 @@ return {
                     d = { "<cmd>Gdiffsplit<cr>", "Git Diff" },
                     b = { "<cmd>Git blame<cr>", "Git blame" },
                     p = { "<cmd>Git push<cr>", "Git push" },
-                    g = { "<cmd>LazyGit<cr>", "LazyGi" },
+                    g = { "<cmd>LazyGit<cr>", "LazyGit" },
                     s = { "<cmd>Git status<cr>", "Git status" },
                     P = { "<cmd>Git pull<cr>", "Git pull" },
                     m = { require("gitsigns").blame_line, "git message" },
