@@ -50,6 +50,7 @@ return {
         -- lsp server progress
         {
             "j-hui/fidget.nvim",
+            branch = "legacy",
             opts = {
                 window = {
                     -- border = "rounded",
