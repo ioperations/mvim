@@ -35,7 +35,7 @@ return {
                     b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
                     n = { "<cmd>TodoTelescope<cr>", "Find Notes" },
                     t = { "<cmd>Telescope builtin<cr>", "Telescope builtin" },
-                    s = { "<cmd>Telescope live_grep<cr>", "Rg" },
+                    s = { "<cmd>Telescope live_grep_args<cr>", "Rg" },
                     r = { "<cmd>Telescope lsp_references<cr>", "Find References" },
                     d = { "<cmd>Telescope diagnostics<cr>", "Document Diagnostics" },
                     m = { "<cmd>Telescope marks<CR>", "Marks" },

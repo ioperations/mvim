@@ -82,7 +82,7 @@ local mappings = {
         -- Ctrl + p fuzzy files
         { "<C-l>", "<nop" },
         { "<C-p>", telescope_find_files },
-        { "<C-g>", "<cmd>Telescope live_grep<cr>" },
+        { "<C-g>", "<cmd>Telescope live_grep_args<cr>" },
         -- escape clears highlighting
         { "<leader>n", "<cmd>noh<cr><esc>" },
         -- hop words
