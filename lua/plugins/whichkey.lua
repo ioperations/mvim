@@ -47,6 +47,7 @@ return {
                     j = { "<cmd>Telescope jumplist<CR>", "jumplist help" },
                     T = { "<cmd>TodoTelescope<CR>", "Search Todos" },
                     e = { "<cmd>Telescope file_browser<CR>", "Browse Files" },
+                    q = { "<cmd>Telescope quickfix<CR>", "quickfix fuzzy find" },
                 },
                 e = { "<cmd>NvimTreeToggle<CR>", "File Tree" },
                 p = { "<cmd>Zi<cr>", "go to path" },
