@@ -1,4 +1,5 @@
 return {
+    { "nickhutchinson/vim-systemtap" },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
