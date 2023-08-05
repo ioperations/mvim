@@ -72,5 +72,6 @@ vim.g.markdown_fenced_languages = {
     "js=javascript",
 }
 
+vim.cmd([[source ~/.config/mvim/vim/langtemplate.vim]])
 -- ~/.locals/share/nvim/lsp.log
 -- vim.lsp.set_log_level(vim.log.levels.TRACE)
