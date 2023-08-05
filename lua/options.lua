@@ -39,6 +39,9 @@ vim.g.maplocalleader = " "
 -- highlight on yank
 vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank()]])
 
+-- fileencoding
+vim.cmd([[set fileencodings=utf-8,gb2312,gbk,gb18030]])
+
 -- Vertically center document when entering insert mode
 -- vim.cmd([[autocmd InsertEnter * norm zz]])
 
