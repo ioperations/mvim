@@ -1,5 +1,6 @@
 return {
     { "nickhutchinson/vim-systemtap" },
+    { "mmarchini/bpftrace.vim" },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
