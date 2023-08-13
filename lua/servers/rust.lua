@@ -53,6 +53,7 @@ M.enable = function()
         vim.cmd(running)
     end
 
+    local ih = require("lsp-inlayhints")
     pcall(function()
         require("rust-tools").setup({
             tools = {
@@ -93,6 +94,8 @@ M.enable = function()
                         pattern = { "*.rs" },
                         callback = function()
                             local _, _ = pcall(vim.lsp.codelens.refresh)
+
+                            ih.show()
                         end,
                     })
                 end,
@@ -110,7 +113,7 @@ M.enable = function()
                         },
                     }, { prefix = "<leader>" })
 
-                    -- lvim.lsp.on_attach_callback(client, bufnr)
+                    ih.show()
                 end,
                 -- capabilities = capabilities,
                 settings = {
