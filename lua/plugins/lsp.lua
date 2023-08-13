@@ -88,6 +88,28 @@ return {
                 -- configurations go here
             },
         },
+        {
+            "lvimuser/lsp-inlayhints.nvim",
+            event = "LspAttach",
+            branch = "anticonceal",
+            opts = {},
+            init = function()
+                vim.api.nvim_create_autocmd("LspAttach", {
+                    group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+                    callback = function(args)
+                        if not (args.data and args.data.client_id) then
+                            return
+                        end
+                        local client = vim.lsp.get_client_by_id(args.data.client_id)
+                        ---@diagnostic disable-next-line: need-check-nil
+                        if client.name ~= "rust_analyzer" then
+                            return
+                        end
+                        require("lsp-inlayhints").on_attach(client, args.buf)
+                    end,
+                })
+            end,
+        },
         -- rust
         {
             "rust-lang/rust.vim",
