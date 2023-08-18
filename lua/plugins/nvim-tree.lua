@@ -20,15 +20,15 @@ return {
                 side = "left",
                 width = 30,
                 preserve_window_proportions = true,
-                mappings = {
-                    custom_only = false,
-                    list = {
-                        { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
-                        { key = "h", action = "close_node" },
-                        { key = "v", action = "vsplit" },
-                        { key = "C", action = "cd" },
-                    },
-                },
+                --mappings = {
+                --    custom_only = false,
+                --    list = {
+                --        { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
+                --        { key = "h", action = "close_node" },
+                --        { key = "v", action = "vsplit" },
+                --        { key = "C", action = "cd" },
+                --    },
+                --},
             },
             git = {
                 enable = true,
