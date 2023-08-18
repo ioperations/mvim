@@ -387,6 +387,15 @@ return {
                 return bufnr, winnr
             end
 
+            local publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
+
+            vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
+                if vim.api.nvim_get_mode().mode ~= "i" or vim.api.nvim_get_mode().mode ~= "s" then
+                    return
+                end
+                publish_diagnostics(...)
+            end
+
             vim.lsp.handlers["textDocument/hover"] = hover_wrapper
 
             vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
