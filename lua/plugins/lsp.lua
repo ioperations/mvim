@@ -391,9 +391,8 @@ return {
 
             vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
                 if vim.api.nvim_get_mode().mode ~= "i" or vim.api.nvim_get_mode().mode ~= "s" then
-                    return
+                    publish_diagnostics(...)
                 end
-                publish_diagnostics(...)
             end
 
             vim.lsp.handlers["textDocument/hover"] = hover_wrapper
