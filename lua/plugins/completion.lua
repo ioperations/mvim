@@ -86,14 +86,14 @@ return {
             },
             -- "hrsh7th/cmp-nvim-lsp-signature-help",
             -- { "tzachar/cmp-fuzzy-buffer", dependencies = { "tzachar/fuzzy.nvim" } },
-            {
-                "roobert/tailwindcss-colorizer-cmp.nvim",
-                config = function()
-                    require("tailwindcss-colorizer-cmp").setup({
-                        color_square_width = 2,
-                    })
-                end,
-            }, -- tailwind color in suggesions
+            -- {
+            --     "roobert/tailwindcss-colorizer-cmp.nvim",
+            --     config = function()
+            --         require("tailwindcss-colorizer-cmp").setup({
+            --             color_square_width = 2,
+            --         })
+            --     end,
+            -- }, -- tailwind color in suggesions
         },
         event = "InsertEnter",
         config = function()
@@ -123,12 +123,12 @@ return {
             cmp.setup({
                 formatting = {
                     format = lspkind.cmp_format({
-                        mode = "symbol_text",
+                        mode = "symbol",
                         ellipsis_char = "...",
                         maxwidth = 50,
                         before = function(entry, vim_item)
                             vim_item.abbr = string.gsub(vim_item.abbr, "^%s+", "")
-                            vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+                            -- vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
                             return vim_item
                         end,
                     }),
