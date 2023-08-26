@@ -1,17 +1,17 @@
 return {
-    {
-        "github/copilot.vim",
-        config = function()
-            vim.api.nvim_exec(
-                [[ 
-                    imap <silent><script><expr> <C-]> copilot#Accept("\<CR>")
-                    let g:copilot_no_tab_map = v:true
-                    ]],
-                false
-            )
-        end,
-        lazy = false,
-    },
+    -- {
+    --     "github/copilot.vim",
+    --     config = function()
+    --         vim.api.nvim_exec(
+    --             [[
+    --                 imap <silent><script><expr> <C-]> copilot#Accept("\<CR>")
+    --                 let g:copilot_no_tab_map = v:true
+    --                 ]],
+    --             false
+    --         )
+    --     end,
+    --     lazy = false,
+    -- },
 
     -- autopirs
     {
