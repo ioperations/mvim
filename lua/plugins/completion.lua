@@ -12,6 +12,18 @@ return {
         end,
         lazy = false,
     },
+
+    -- autopirs
+    {
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup({})
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            local cmp = require("cmp")
+            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
+    },
+
     {
         "tamago324/nlsp-settings.nvim",
         dependencies = "williamboman/nvim-lsp-installer",
@@ -73,7 +85,7 @@ return {
                 end,
             },
             -- "hrsh7th/cmp-nvim-lsp-signature-help",
-            { "tzachar/cmp-fuzzy-buffer", dependencies = { "tzachar/fuzzy.nvim" } },
+            -- { "tzachar/cmp-fuzzy-buffer", dependencies = { "tzachar/fuzzy.nvim" } },
             {
                 "roobert/tailwindcss-colorizer-cmp.nvim",
                 config = function()
@@ -182,7 +194,19 @@ return {
                 sources = cmp.config.sources({
                     { name = "luasnip", priority = 45 },
                     { name = "nvim_lsp", priority = 20 },
-                    { name = "buffer" },
+                    {
+                        name = "buffer",
+                        option = {
+                            keyword_pattern = [[\k\+]],
+                            get_bufnrs = function()
+                                local bufs = {}
+                                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                                    bufs[vim.api.nvim_win_get_buf(win)] = true
+                                end
+                                return vim.tbl_keys(bufs)
+                            end,
+                        },
+                    },
                     { name = "emoji" },
                 }),
                 experimental = {
@@ -203,7 +227,7 @@ return {
                         compare.sort_text,
                         compare.length,
                         compare.order,
-                        require("cmp_fuzzy_buffer.compare"),
+                        -- require("cmp_fuzzy_buffer.compare"),
                     },
                 },
             })
@@ -218,7 +242,7 @@ return {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
                     { name = "buffer" },
-                    { name = "fuzzy_buffer" },
+                    -- { name = "fuzzy_buffer" },
                 }),
             })
 
