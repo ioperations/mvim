@@ -27,6 +27,7 @@ vim.opt.spelllang = "en_gb,en_us"
 vim.opt.mousemodel = "popup"
 -- timeout for whichkey
 vim.opt.timeoutlen = 500
+vim.opt.pumheight = 17
 
 -- Neovide settings
 
