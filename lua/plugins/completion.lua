@@ -13,6 +13,13 @@ return {
     --     lazy = false,
     -- },
 
+    {
+        "nvimdev/lspsaga.nvim",
+        event = "LspAttach",
+        config = function()
+            require("lspsaga").setup({})
+        end,
+    },
     -- autopirs
     {
         "windwp/nvim-autopairs",

@@ -70,7 +70,8 @@ local mappings = {
         -- lsp
         { "gR", vim.lsp.buf.rename },
         { "gD", vim.lsp.buf.declaration },
-        { "gd", "<cmd>Telescope lsp_definitions<cr>" },
+        { "gd", "<cmd>Lspsaga goto_definition<cr>" },
+        { "go", "<cmd>Lspsaga outline<cr>" },
         { "gr", "<cmd>Telescope lsp_references<cr>" },
         { "gi", "<cmd>Telescope lsp_implementations<cr>" },
         { "ga", "<cmd>CodeActionMenu<cr>" },
