@@ -76,6 +76,7 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-emoji",
+            "hrsh7th/cmp-path",
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
             {
@@ -214,6 +215,7 @@ return {
                             end,
                         },
                     },
+                    { name = "path" },
                     { name = "emoji" },
                 }),
                 experimental = {
@@ -241,7 +243,7 @@ return {
 
             -- only enable nvim_lsp in lua files
             vim.cmd(
-                [[ autocmd FileType lua lua require'cmp'.setup.buffer { sources = { { name = 'buffer' },{ name = 'nvim_lua'},{name = "nvim_lsp"}, {name = 'async_path'}, {name = 'emoji'}},} ]]
+                [[ autocmd FileType lua lua require'cmp'.setup.buffer { sources = { { name = 'buffer' },{ name = 'nvim_lua'},{name = "nvim_lsp"}, {name = 'path'}, {name = 'emoji'}},} ]]
             )
 
             -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -257,7 +259,7 @@ return {
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
-                    { name = "async_path" },
+                    { name = "path" },
                     { name = "cmdline" },
                 }),
             })
