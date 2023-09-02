@@ -81,11 +81,19 @@ return {
             name = "barbecue",
             version = "*",
             dependencies = {
-                "SmiteshP/nvim-navic",
+                {
+                    "SmiteshP/nvim-navic",
+                    config = function()
+                        require("nvim-navic").setup({
+                            auto_attach = false,
+                        })
+                    end,
+                },
                 "nvim-web-devicons", -- optional dependency
             },
             opts = {
                 -- configurations go here
+                attach_navic = false,
             },
         },
         {
@@ -137,6 +145,7 @@ return {
         },
 
         "p00f/clangd_extensions.nvim",
+        "ranjithshegde/ccls.nvim",
         -- diagnostic show
         --       {
         --           "https://git.sr.ht/~whynothugo/lsp_lines.nvim",

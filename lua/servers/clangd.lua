@@ -35,9 +35,10 @@ M.enable = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.offsetEncoding = "utf-16"
+    capabilities.offsetEncoding = "utf-32"
+    local navic = require("nvim-navic")
 
-    local on_attach = function(_, _)
+    local on_attach = function(client, bufnr)
         --   local wk = require("which-key")
         --  wk.register({
         --    l = {
@@ -45,6 +46,7 @@ M.enable = function()
         --      x = { require("rust-tools").expand_macro.expand_macro, "expand macro" },
         --    },
         --  }, { prefix = "<leader>" })
+        navic.attach(client, bufnr)
         require("clangd_extensions.inlay_hints").setup_autocmd()
         require("clangd_extensions.inlay_hints").set_inlay_hints()
     end
@@ -72,11 +74,51 @@ M.enable = function()
 
             "--all-scopes-completion",
             "--completion-style=detailed",
+            "--offset-encoding=utf-32",
+            "--enable-config",
+            "--clang-tidy",
+            "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
         },
         capabilities = capabilities,
         trace = "verbose",
         init_options = {
             fallbackFlags = fallbackFlags,
+        },
+    })
+
+    local filetypes = { "c", "cpp", "objc", "objcpp", "opencl" }
+    local server_config = {
+        filetypes = filetypes,
+        init_options = { cache = {
+            directory = vim.fs.normalize("~/.cache/ccls/"),
+        } },
+        name = "ccls",
+        cmd = { "ccls" },
+        offset_encoding = "utf-32",
+        root_dir = vim.fs.dirname(
+            vim.fs.find({ "compile_commands.json", "compile_flags.txt", ".git" }, { upward = true })[1]
+        ),
+    }
+
+    require("ccls").setup({
+        filetypes = filetypes,
+        lsp = {
+            server = server_config,
+            disable_capabilities = {
+                completionProvider = true,
+                documentFormattingProvider = true,
+                documentRangeFormattingProvider = true,
+                documentHighlightProvider = true,
+                documentSymbolProvider = true,
+                workspaceSymbolProvider = true,
+                renameProvider = true,
+                hoverProvider = true,
+                referencesProvider = true,
+                codeActionProvider = true,
+            },
+            disable_diagnostics = true,
+            disable_signature = true,
+            codelens = { enable = false },
         },
     })
 end
