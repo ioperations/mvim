@@ -107,12 +107,24 @@ M.enable = function()
         },
     })
 
-    local filetypes = { "c", "cpp", "objc", "objcpp", "opencl" }
+    local filetypes = { "c", "cpp", "objc", "objcpp", "opencl", "inc" }
     local server_config = {
         filetypes = filetypes,
-        init_options = { cache = {
-            directory = vim.fs.normalize("~/.cache/ccls/"),
-        } },
+        init_options = {
+            cache = {
+                directory = vim.fs.normalize("~/.cache/ccls/"),
+                retainInMemory = 0,
+            },
+            clang = {
+                --  "extraArgs": ["-DTEST_ADQ", "-Wall", "-std=c++17"]
+                extraArgs = {
+                    "-DTEST_ADQ",
+                    "-Wall",
+                    "-Wpedantic",
+                    "-std=c++17",
+                },
+            },
+        },
         name = "ccls",
         cmd = { "ccls" },
         offset_encoding = "utf-32",
