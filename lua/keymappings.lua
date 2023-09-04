@@ -79,6 +79,9 @@ local mappings = {
         { "gt", "<cmd>Telescope lsp_type_definitions<cr>" },
         { "gn", '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" } })<cr>' },
         { "gp", '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" } })<cr>' },
+        { "<c-\\>", "<cmd>cclose<cr>" },
+        { "<c-[>", "<cmd>cprevious<cr>" },
+        { "<c-]>", "<cmd>cnext<cr>" },
 
         -- Ctrl + p fuzzy files
         { "<C-l>", "<nop" },
