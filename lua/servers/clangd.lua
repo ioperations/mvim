@@ -49,27 +49,6 @@ M.enable = function()
         navic.attach(client, bufnr)
         require("clangd_extensions.inlay_hints").setup_autocmd()
         require("clangd_extensions.inlay_hints").set_inlay_hints()
-        local wk = require("which-key")
-        wk.register({
-            x = {
-                name = "Lsp",
-                i = { "<cmd>CclsIncomingCalls<cr>", "CCls Incoming Calls" },
-                d = { "<cmd>CclsDerived<cr>", "CCls Derived" },
-                f = { "<cmd>CclsMemberFunction<cr>", "CCls MemberFunction" },
-                D = { "<cmd>CclsDerivedHierarchy<cr>", "CCls Derived Hierachy" },
-                o = { "<cmd>CclsOutgoingCalls<cr>", "CCls Outgoing Calls Hierachy" },
-                I = { "<cmd>CclsIncomingCallsHierarchy<cr>", "CCls Incoming Calls Hierachy" },
-                O = { "<cmd>CclsOutgoingCallsHierarchy<cr>", "CCls Outgoing Calls Hierachy" },
-                b = { "<cmd>CclsBase<cr>", "CCls Base" },
-                v = { "<cmd>CclsVars<cr>", "CCls Vars" },
-                m = { "<cmd>CclsMember<cr>", "CCls Member" },
-                t = { "<cmd>CclsMemberType<cr>", "CCls MemberType" },
-                B = { "<cmd>CclsBaseHierarchy<cr>", "CCls CclsBaseHierarchy" },
-                T = { "<cmd>CclsMemberTypeHierarchy<cr>", "CCls MemberTypeHirarchy" },
-                M = { "<cmd>CclsMemberHierarchy<cr>", "CCls MemberHirarchy" },
-                F = { "<cmd>CclsMemberFunctionHierarchy<cr>", "CCls MemberFunctionHierarchy" },
-            },
-        }, { prefix = "<leader>" })
     end
 
     require("lspconfig").clangd.setup({
@@ -131,6 +110,29 @@ M.enable = function()
         root_dir = vim.fs.dirname(
             vim.fs.find({ "compile_commands.json", "compile_flags.txt", ".git" }, { upward = true })[1]
         ),
+        on_attach = function(client, bufnr)
+            local wk = require("which-key")
+            wk.register({
+                x = {
+                    name = "Lsp",
+                    i = { "<cmd>CclsIncomingCalls<cr>", "CCls Incoming Calls" },
+                    d = { "<cmd>CclsDerived<cr>", "CCls Derived" },
+                    f = { "<cmd>CclsMemberFunction<cr>", "CCls MemberFunction" },
+                    D = { "<cmd>CclsDerivedHierarchy<cr>", "CCls Derived Hierachy" },
+                    o = { "<cmd>CclsOutgoingCalls<cr>", "CCls Outgoing Calls Hierachy" },
+                    I = { "<cmd>CclsIncomingCallsHierarchy<cr>", "CCls Incoming Calls Hierachy" },
+                    O = { "<cmd>CclsOutgoingCallsHierarchy<cr>", "CCls Outgoing Calls Hierachy" },
+                    b = { "<cmd>CclsBase<cr>", "CCls Base" },
+                    v = { "<cmd>CclsVars<cr>", "CCls Vars" },
+                    m = { "<cmd>CclsMember<cr>", "CCls Member" },
+                    t = { "<cmd>CclsMemberType<cr>", "CCls MemberType" },
+                    B = { "<cmd>CclsBaseHierarchy<cr>", "CCls CclsBaseHierarchy" },
+                    T = { "<cmd>CclsMemberTypeHierarchy<cr>", "CCls MemberTypeHirarchy" },
+                    M = { "<cmd>CclsMemberHierarchy<cr>", "CCls MemberHirarchy" },
+                    F = { "<cmd>CclsMemberFunctionHierarchy<cr>", "CCls MemberFunctionHierarchy" },
+                },
+            }, { prefix = "<leader>" })
+        end,
     }
 
     require("ccls").setup({
@@ -147,6 +149,7 @@ M.enable = function()
                 renameProvider = true,
                 hoverProvider = true,
                 referencesProvider = true,
+                definitionProvider = true,
                 codeActionProvider = true,
             },
             disable_diagnostics = true,
