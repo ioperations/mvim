@@ -91,7 +91,7 @@ M.enable = function()
         filetypes = filetypes,
         init_options = {
             cache = {
-                directory = vim.fs.normalize("~/.cache/ccls/"),
+                -- directory = vim.fs.normalize("~/.cache/ccls/"),
                 retainInMemory = 0,
             },
             clang = {
