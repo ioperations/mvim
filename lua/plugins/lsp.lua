@@ -77,23 +77,14 @@ return {
 
         -- winbar
         {
-            "utilyre/barbecue.nvim",
-            name = "barbecue",
-            version = "*",
+            "SmiteshP/nvim-navic",
+            config = function()
+                require("nvim-navic").setup({
+                    auto_attach = false,
+                })
+            end,
             dependencies = {
-                {
-                    "SmiteshP/nvim-navic",
-                    config = function()
-                        require("nvim-navic").setup({
-                            auto_attach = false,
-                        })
-                    end,
-                },
                 "nvim-web-devicons", -- optional dependency
-            },
-            opts = {
-                -- configurations go here
-                attach_navic = false,
             },
         },
         {
