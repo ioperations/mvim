@@ -69,7 +69,37 @@ return {
                 "onsails/lspkind-nvim",
                 config = function()
                     local lspkind = require("lspkind")
-                    lspkind.init({})
+                    lspkind.init({
+                        mode = "symbol_text",
+                        preset = "codicons",
+                        symbol_map = {
+                            Text = "🐢",
+                            Method = "󰆧 ",
+                            Function = "󰊕",
+                            Constructor = " ",
+                            Field = " ",
+                            Variable = "󰆧 ",
+                            Class = "󰌗 ",
+                            Interface = " ",
+                            Module = " ",
+                            Property = " ",
+                            Unit = " ",
+                            Value = " ",
+                            Enum = "󰕘 ",
+                            Keyword = "󰌋 ",
+                            Snippet = "S",
+                            Color = "󰏘 ",
+                            File = "󰈙",
+                            Reference = "※ ",
+                            Folder = " ",
+                            EnumMember = "󰕘 ",
+                            Constant = "󰏿",
+                            Struct = "󰌗 ",
+                            Event = "",
+                            Operator = "󰆕 ",
+                            TypeParameter = "󰊄 ",
+                        },
+                    })
                 end,
             },
             -- "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -181,9 +211,11 @@ return {
                                 return vim.api.nvim_list_bufs()
                             end,
                         },
+                        priority = 10,
                     },
                     { name = "path" },
                     { name = "emoji" },
+                    -- { name = "nvim_lsp_signature_help" },
                 }),
                 experimental = {
                     ghost_text = true,
@@ -194,8 +226,8 @@ return {
                 sorting = {
                     priority_weight = 2,
                     comparators = {
-                        compare.locality,
                         compare.score,
+                        compare.locality,
                         compare.recently_used,
                     },
                 },
@@ -211,7 +243,6 @@ return {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
                     { name = "buffer" },
-                    -- { name = "fuzzy_buffer" },
                 }),
             })
 
