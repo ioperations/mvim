@@ -229,12 +229,6 @@ return {
                     documentation = cmp.config.window.bordered(),
                     -- completion = cmp_window.bordered(),
                 },
-                sorting = {
-                    comparators = {
-                        compare.score,
-                        compare.locality,
-                    },
-                },
             })
 
             -- only enable nvim_lsp in lua files
