@@ -134,29 +134,6 @@ M.enable = function()
             }, { prefix = "<leader>" })
         end,
     }
-
-    require("ccls").setup({
-        filetypes = filetypes,
-        lsp = {
-            server = server_config,
-            disable_capabilities = {
-                completionProvider = true,
-                documentFormattingProvider = true,
-                documentRangeFormattingProvider = true,
-                documentHighlightProvider = true,
-                documentSymbolProvider = true,
-                workspaceSymbolProvider = true,
-                renameProvider = true,
-                hoverProvider = true,
-                referencesProvider = true,
-                definitionProvider = true,
-                codeActionProvider = true,
-            },
-            disable_diagnostics = true,
-            disable_signature = true,
-            codelens = { enable = true },
-        },
-    })
 end
 
 return M
