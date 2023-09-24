@@ -66,12 +66,20 @@ return {
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
             {
+                "roobert/tailwindcss-colorizer-cmp.nvim",
+                -- optionally, override the default options:
+                config = function()
+                    require("tailwindcss-colorizer-cmp").setup({
+                        color_square_width = 2,
+                    })
+                end,
+            },
+            {
                 "onsails/lspkind-nvim",
                 config = function()
                     local lspkind = require("lspkind")
                     lspkind.init({
                         mode = "symbol_text",
-                        preset = "codicons",
                         symbol_map = {
                             Text = "🐢",
                             Method = "󰆧 ",
@@ -134,10 +142,10 @@ return {
                     format = lspkind.cmp_format({
                         mode = "symbol",
                         ellipsis_char = "...",
-                        maxwidth = 50,
+                        maxwidth = 70,
                         before = function(entry, vim_item)
                             vim_item.abbr = string.gsub(vim_item.abbr, "^%s+", "")
-                            -- vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+                            vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
                             return vim_item
                         end,
                     }),
@@ -162,8 +170,6 @@ return {
                             luasnip.expand_or_jump()
                         elseif cmp.visible() then
                             cmp.select_next_item()
-                        elseif has_words_before() then
-                            cmp.complete()
                         else
                             fallback()
                         end
@@ -190,19 +196,24 @@ return {
                         end
                     end, { "i", "s" }),
 
-                    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
                     ["<C-c>"] = cmp.mapping.complete(),
-                    ["<C-e>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({
-                        -- behavior = cmp.ConfirmBehavior.Insert,
-                        select = true,
-                    }),
+                    ["<CR>"] = function(fallback)
+                        if cmp.visible() then
+                            cmp.confirm()
+                        else
+                            fallback()
+                        end
+                    end,
+                },
+                completion = {
+                    completeopt = "menu,menuone,noinsert",
                 },
                 sources = cmp.config.sources({
-                    { name = "luasnip", priority = 45 },
                     { name = "nvim_lsp", priority = 20 },
+                    { name = "luasnip", priority = 20 },
                     {
                         name = "buffer",
                         option = {
@@ -228,7 +239,6 @@ return {
                     comparators = {
                         compare.score,
                         compare.locality,
-                        compare.recently_used,
                     },
                 },
             })

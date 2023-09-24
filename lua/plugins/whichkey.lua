@@ -69,7 +69,7 @@ return {
                 d = {
                     o = { require("dapui").toggle, "debug ui toggle" },
                 },
-                r = { r = { "<cmd>FloatermNew --width=0.8 --height=0.8 ranger<cr>", "ranger" } },
+                r = { r = { "<cmd>FloatermNew --width=0.9 --height=0.9 ranger<cr>", "ranger" } },
                 R = { "<cmd>Telescope resume<cr>", "resume" },
                 -- Bufferline
                 g = {

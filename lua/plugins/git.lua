@@ -1,5 +1,6 @@
 return {
 
+    { "sindrets/diffview.nvim" },
     -- git
     -- "f-person/git-blame.nvim",
     {
