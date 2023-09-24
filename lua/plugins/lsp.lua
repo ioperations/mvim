@@ -47,18 +47,6 @@ return {
             end,
         },
 
-        -- winbar
-        {
-            "SmiteshP/nvim-navic",
-            config = function()
-                require("nvim-navic").setup({
-                    auto_attach = false,
-                })
-            end,
-            dependencies = {
-                "nvim-web-devicons", -- optional dependency
-            },
-        },
         -- rust
         {
             { "rust-lang/rust.vim", ft = { "rust", "toml" } },

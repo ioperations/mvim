@@ -202,8 +202,9 @@ return {
                     completeopt = "menu,menuone,noinsert",
                 },
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp", priority = 20 },
-                    { name = "luasnip", priority = 20 },
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                }, {
                     {
                         name = "buffer",
                         option = {
@@ -212,8 +213,8 @@ return {
                                 return vim.api.nvim_list_bufs()
                             end,
                         },
-                        priority = 10,
                     },
+                }, {
                     { name = "path" },
                     { name = "emoji" },
                     -- { name = "nvim_lsp_signature_help" },
@@ -229,7 +230,6 @@ return {
                     -- completion = cmp_window.bordered(),
                 },
                 sorting = {
-                    priority_weight = 2,
                     comparators = {
                         compare.score,
                         compare.locality,
