@@ -1,6 +1,7 @@
 -- basic settings and options
 vim.opt.rtp:remove(vim.fn.expand("$HOME") .. "/.config/nvim")
 vim.opt.rtp:remove(vim.fn.expand("$HOME") .. "/.config/nvim/after")
+
 vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
 require("options")
 
@@ -19,13 +20,14 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.opt.rtp:remove(vim.fn.expand("$HOME") .. "/.config/nvim")
-vim.opt.rtp:remove(vim.fn.expand("$HOME") .. "/.config/nvim/after")
 
-local lazy_opts = { ui = { border = "rounded" }, lockfile = vim.fn.expand("$HOME") .. "/.config/mvim/lazy-lock.json" }
+local lazy_opts = {
+    ui = { border = "rounded" },
+    lockfile = vim.fn.expand("$HOME") .. "/.config/mvim/lazy-lock.json",
+    performance = { rtp = { reset = false } },
+}
 
 require("lazy").setup("plugins", lazy_opts)
 
-vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
 -- keymappings
 require("keymappings")

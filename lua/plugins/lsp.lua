@@ -284,27 +284,21 @@ return {
                     -- Next, you can provide a dedicated handler for specific servers.
                     -- For example, a handler override for the `rust_analyzer`:
                     ["rust_analyzer"] = function()
-                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.rust").enable()
                     end,
                     ["lua_ls"] = function()
-                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.luals").enable()
                     end,
                     ["clangd"] = function()
-                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.clangd").enable()
                     end,
                     ["gopls"] = function()
-                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.gopls").enable()
                     end,
                     ["yamlls"] = function()
-                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.yaml").enable()
                     end,
                     ["jsonls"] = function()
-                        vim.opt.rtp:append(vim.fn.expand("$HOME") .. "/.config/mvim")
                         require("servers.json").enable()
                     end,
                 })
