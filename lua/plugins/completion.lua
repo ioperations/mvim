@@ -1,18 +1,4 @@
 return {
-    -- {
-    --     "github/copilot.vim",
-    --     config = function()
-    --         vim.api.nvim_exec(
-    --             [[
-    --                 imap <silent><script><expr> <C-]> copilot#Accept("\<CR>")
-    --                 let g:copilot_no_tab_map = v:true
-    --                 ]],
-    --             false
-    --         )
-    --     end,
-    --     lazy = false,
-    -- },
-
     {
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",
@@ -83,25 +69,10 @@ return {
                 "onsails/lspkind-nvim",
                 config = function()
                     local lspkind = require("lspkind")
-                    lspkind.init({
-                        symbol_map = {
-                            Copilot = "",
-                        },
-                    })
-
-                    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+                    lspkind.init({})
                 end,
             },
             -- "hrsh7th/cmp-nvim-lsp-signature-help",
-            -- { "tzachar/cmp-fuzzy-buffer", dependencies = { "tzachar/fuzzy.nvim" } },
-            -- {
-            --     "roobert/tailwindcss-colorizer-cmp.nvim",
-            --     config = function()
-            --         require("tailwindcss-colorizer-cmp").setup({
-            --             color_square_width = 2,
-            --         })
-            --     end,
-            -- }, -- tailwind color in suggesions
         },
         event = "InsertEnter",
         config = function()
@@ -225,14 +196,7 @@ return {
                     comparators = {
                         compare.locality,
                         compare.score,
-                        compare.kind,
                         compare.recently_used,
-                        compare.exact,
-                        compare.offset,
-                        compare.sort_text,
-                        compare.length,
-                        compare.order,
-                        -- require("cmp_fuzzy_buffer.compare"),
                     },
                 },
             })
