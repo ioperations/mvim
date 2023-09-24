@@ -1,31 +1,3 @@
-local sp1 = {
-    "▰▱▱▱▱▱▱▱▱▱▱▱▱▰",
-    "▰▰▱▱▱▱▱▱▱▱▱▱▱▰",
-    "▰▰▰▱▱▱▱▱▱▱▱▱▱▰",
-    "▰▰▰▰▱▱▱▱▱▱▱▱▱▰",
-    "▰▰▰▰▰▱▱▱▱▱▱▱▱▰",
-    "▰▰▰▰▰▰▱▱▱▱▱▱▱▰",
-    "▰▰▰▰▰▰▰▱▱▱▱▱▱▰",
-    "▰▰▰▰▰▰▰▰▱▱▱▱▱▰",
-    "▰▰▰▰▰▰▰▰▰▱▱▱▱▰",
-    "▰▰▰▰▰▰▰▰▰▰▱▱▱▰",
-    "▰▰▰▰▰▰▰▰▰▰▰▱▱▰",
-    "▰▰▰▰▰▰▰▰▰▰▰▰▱▰",
-    "▰▰▰▰▰▰▰▰▰▰▰▰▰▰",
-    "▰▱▰▰▰▰▰▰▰▰▰▰▰▰",
-    "▰▱▱▰▰▰▰▰▰▰▰▰▰▰",
-    "▰▱▱▱▰▰▰▰▰▰▰▰▰▰",
-    "▰▱▱▱▱▰▰▰▰▰▰▰▰▰",
-    "▰▱▱▱▱▱▰▰▰▰▰▰▰▰",
-    "▰▱▱▱▱▱▱▰▰▰▰▰▰▰",
-    "▰▱▱▱▱▱▱▱▰▰▰▰▰▰",
-    "▰▱▱▱▱▱▱▱▱▰▰▰▰▰",
-    "▰▱▱▱▱▱▱▱▱▱▰▰▰▰",
-    "▰▱▱▱▱▱▱▱▱▱▱▰▰▰",
-    "▰▱▱▱▱▱▱▱▱▱▱▱▰▰",
-    "▰▱▱▱▱▱▱▱▱▱▱▱▱▰",
-}
-
 local sp2 = {
     "▰▱▱▱▱▱▱▱▱▱▱▱▱▰",
     "▰▰▱▱▱▱▱▱▱▱▱▱▱▰",
@@ -87,32 +59,10 @@ return {
                 "nvim-web-devicons", -- optional dependency
             },
         },
-        {
-            "lvimuser/lsp-inlayhints.nvim",
-            event = "LspAttach",
-            branch = "anticonceal",
-            opts = {},
-            init = function()
-                vim.api.nvim_create_autocmd("LspAttach", {
-                    group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
-                    callback = function(args)
-                        if not (args.data and args.data.client_id) then
-                            return
-                        end
-                        local client = vim.lsp.get_client_by_id(args.data.client_id)
-                        ---@diagnostic disable-next-line: need-check-nil
-                        if client.name ~= "rust_analyzer" then
-                            return
-                        end
-                        require("lsp-inlayhints").on_attach(client, args.buf)
-                    end,
-                })
-            end,
-        },
         -- rust
         {
-            "rust-lang/rust.vim",
-            "simrat39/rust-tools.nvim",
+            { "rust-lang/rust.vim", ft = { "rust", "toml" } },
+            { "simrat39/rust-tools.nvim", ft = { "rust", "toml" } },
             {
                 "saecki/crates.nvim",
                 version = "v0.3.0",
@@ -125,6 +75,7 @@ return {
                         },
                     })
                 end,
+                ft = { "rust", "toml" },
             },
         },
 
@@ -135,8 +86,8 @@ return {
             end,
         },
 
-        "p00f/clangd_extensions.nvim",
-        "ranjithshegde/ccls.nvim",
+        { "p00f/clangd_extensions.nvim", lazy = true },
+        { "ranjithshegde/ccls.nvim", lazy = true },
         -- diagnostic show
         --       {
         --           "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -163,30 +114,20 @@ return {
                     ensure_installed = {
 
                         -- you can pin a tool to a particular version
-                        { "golangci-lint" },
                         { "pyright" },
-                        { "debugpy" },
-                        { "cmake-language-server" },
 
                         -- you can turn off/on auto_update per tool
                         { "bash-language-server", auto_update = true },
 
                         "codelldb",
                         "cpptools",
+                        "neocmakelsp",
                         "lua-language-server",
                         "vim-language-server",
-                        "gopls",
                         "stylua",
                         "shellcheck",
                         "editorconfig-checker",
-                        "gofumpt",
-                        "golines",
-                        "gomodifytags",
-                        "gotests",
-                        "impl",
-                        "json-to-struct",
                         "misspell",
-                        "revive",
                         "shellcheck",
                         "shfmt",
                         "staticcheck",
@@ -237,26 +178,7 @@ return {
                 })
             end,
         },
-        {
-            "ray-x/go.nvim",
-            dependencies = "ray-x/guihua.lua",
-            config = function()
-                require("go").setup({
-                    lsp_cfg = false,
-                })
-                local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    pattern = "*.go",
-                    callback = function()
-                        require("go.format").goimport()
-                    end,
-                    group = format_sync_grp,
-                })
-            end,
-            event = { "CmdlineEnter" },
-            ft = { "go", "gomod" },
-            build = ':lua require("go.install").update_all()',
-        },
+
         -- lsp server manager: automatic setup
         {
             "williamboman/mason-lspconfig.nvim",
@@ -267,7 +189,13 @@ return {
                         "taplo",
                         "lua_ls",
                         "clangd",
-                        "gopls",
+                        "neocmake",
+                        "bashls",
+                        "pylsp",
+                        "pyright",
+                        "vimls",
+                        "lua_ls",
+                        "jsonls",
                     },
                     automatic_installation = true,
                 })
@@ -291,9 +219,7 @@ return {
                     end,
                     ["clangd"] = function()
                         require("servers.clangd").enable()
-                    end,
-                    ["gopls"] = function()
-                        require("servers.gopls").enable()
+                        require("servers.ccls").enable()
                     end,
                     ["yamlls"] = function()
                         require("servers.yaml").enable()
