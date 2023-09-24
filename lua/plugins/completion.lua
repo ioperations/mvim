@@ -156,7 +156,7 @@ return {
                         end
                     end, { "i", "c", "s" }),
                     ["<C-j>"] = cmp.mapping(function(fallback)
-                        if luasnip.expand_or_jumpable() then
+                        if luasnip.expand_or_locally_jumpable() then
                             luasnip.expand_or_jump()
                         elseif cmp.visible() then
                             cmp.select_next_item()
@@ -221,8 +221,12 @@ return {
                 experimental = {
                     ghost_text = true,
                 },
+                view = {
+                    -- entries = "native",
+                },
                 window = {
                     documentation = cmp.config.window.bordered(),
+                    -- completion = cmp_window.bordered(),
                 },
                 sorting = {
                     priority_weight = 2,
