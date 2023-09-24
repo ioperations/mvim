@@ -66,15 +66,6 @@ return {
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
             {
-                "roobert/tailwindcss-colorizer-cmp.nvim",
-                -- optionally, override the default options:
-                config = function()
-                    require("tailwindcss-colorizer-cmp").setup({
-                        color_square_width = 2,
-                    })
-                end,
-            },
-            {
                 "onsails/lspkind-nvim",
                 config = function()
                     local lspkind = require("lspkind")
@@ -145,7 +136,6 @@ return {
                         maxwidth = 70,
                         before = function(entry, vim_item)
                             vim_item.abbr = string.gsub(vim_item.abbr, "^%s+", "")
-                            vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
                             return vim_item
                         end,
                     }),

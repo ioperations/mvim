@@ -204,32 +204,32 @@ for _, a in ipairs(actions) do
     vim.keymap.set("n", a .. "f", a .. "<cmd>lua require'hop'.hint_char1()<cr>")
 end
 
-local function is_lsp_float_open(window_id)
-    return window_id and window_id ~= 0 and vim.api.nvim_win_is_valid(window_id)
-end
+-- local function is_lsp_float_open(window_id)
+--     return window_id and window_id ~= 0 and vim.api.nvim_win_is_valid(window_id)
+-- end
 
-local function setkey(mode, origin_key, fallback_key)
-    vim.keymap.set(mode, origin_key, function()
-        assert(_G ~= nil, "_G should exists ")
-
-        local mapping = vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
-        if _G._LSP_SIG_CFG == nil then
-            vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
-            return
-        end
-        local window_id = _G._LSP_SIG_CFG.winnr
-        local mappingf = vim.api.nvim_replace_termcodes(origin_key, true, false, true)
-
-        if is_lsp_float_open(window_id) then
-            vim.fn.win_execute(window_id, "normal! " .. mappingf)
-        else
-            vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
-        end
-    end, { silent = true })
-end
-
-setkey("i", "<c-d>", "<Del>")
-setkey("i", "<c-u>", "<left>")
-
-setkey("s", "<c-d>", "<Del>")
-setkey("s", "<c-u>", "<left>")
+-- local function setkey(mode, origin_key, fallback_key)
+--     vim.keymap.set(mode, origin_key, function()
+--         assert(_G ~= nil, "_G should exists ")
+--
+--         local mapping = vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
+--         if _G._LSP_SIG_CFG == nil then
+--             vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
+--             return
+--         end
+--         local window_id = _G._LSP_SIG_CFG.winnr
+--         local mappingf = vim.api.nvim_replace_termcodes(origin_key, true, false, true)
+--
+--         if is_lsp_float_open(window_id) then
+--             vim.fn.win_execute(window_id, "normal! " .. mappingf)
+--         else
+--             vim.api.nvim_feedkeys(mapping, "n" .. mode, false)
+--         end
+--     end, { silent = true })
+-- end
+--
+-- setkey("i", "<c-f>", "<Right>")
+-- setkey("i", "<c-b>", "<Left>")
+--
+-- setkey("s", "<c-f>", "<Right>")
+-- setkey("s", "<c-b>", "<Left>")

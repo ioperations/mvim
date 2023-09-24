@@ -129,6 +129,18 @@ M.enable = function()
                                 enable = true,
                             },
                         },
+                        inlay_hints = {
+                            indingModeHints = {
+                                enable = true,
+                            },
+                            closureCaptureHints = {
+                                enable = true,
+                            },
+                            closureReturnTypeHints = { enable = true },
+                            expressionAdjustmentHints = {
+                                enable = true,
+                            },
+                        },
                         procMacro = {
                             enable = true,
                         },

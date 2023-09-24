@@ -276,36 +276,38 @@ return {
                 opts.max_width = 80
                 return orig_util_open_floating_preview(contents, syntax, opts, ...)
             end
-            local function hover_wrapper(err, request, ctx, config)
-                local fun = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-                local bufnr, winnr = fun(err, request, ctx, config)
-                if bufnr == nil or winnr == nil then
-                    return
-                end
-                local contents = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-                local val = 0
-                local math = require("math")
-                for _, v in pairs(contents) do
-                    if #v > 80 then
-                        val = val + math.floor(#v / 240) + 1
-                    else
-                        val = val + 1
-                    end
-                end
-                contents = vim.tbl_map(function(line)
-                    return string.gsub(line, "&emsp;", "")
-                end, contents)
-                vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
-                vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
-                vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
-                local height = 16
-                if val < 16 then
-                    height = val
-                end
-                vim.api.nvim_win_set_height(winnr, height + 1)
+            -- local function hover_wrapper(err, request, ctx, config)
+            --     local fun = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+            --     local bufnr, winnr = fun(err, request, ctx, config)
+            --     if bufnr == nil or winnr == nil then
+            --         return
+            --     end
+            --     local contents = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+            --     local val = 0
+            --     local math = require("math")
+            --     for _, v in pairs(contents) do
+            --         if #v > 80 then
+            --             val = val + math.floor(#v / 240) + 1
+            --         else
+            --             val = val + 1
+            --         end
+            --     end
+            --     contents = vim.tbl_map(function(line)
+            --         return string.gsub(line, "&emsp;", "")
+            --     end, contents)
+            --     vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
+            --     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
+            --     vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
+            --     local height = 16
+            --     if val < 16 then
+            --         height = val
+            --     end
+            --     vim.api.nvim_win_set_height(winnr, height + 1)
 
-                return bufnr, winnr
-            end
+            --     return bufnr, winnr
+            -- end
+
+            -- vim.lsp.handlers["textDocument/hover"] = hover_wrapper
 
             local publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
 
@@ -314,8 +316,6 @@ return {
                     publish_diagnostics(...)
                 end
             end
-
-            vim.lsp.handlers["textDocument/hover"] = hover_wrapper
 
             vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
                 border = "rounded",
