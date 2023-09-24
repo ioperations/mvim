@@ -188,17 +188,46 @@ return {
         },
         opts = {
             options = {
-                offsets = {
-                    {
-                        filetype = "NvimTree",
-                        -- text = "File Explorer",
-                        highlight = "Directory",
-                        text_align = "left",
-                    },
-                },
                 diagnostics = "nvim_lsp",
                 max_name_length = 22,
                 tab_size = 22,
+                offsets = {
+                    {
+                        filetype = "undotree",
+                        text = "Undotree",
+                        highlight = "PanelHeading",
+                        padding = 1,
+                    },
+                    {
+                        filetype = "NvimTree",
+                        text = "Explorer",
+                        highlight = "PanelHeading",
+                        padding = 1,
+                    },
+                    {
+                        filetype = "DiffviewFiles",
+                        text = "Diff View",
+                        highlight = "PanelHeading",
+                        padding = 1,
+                    },
+                    {
+                        filetype = "flutterToolsOutline",
+                        text = "Flutter Outline",
+                        highlight = "PanelHeading",
+                    },
+                    {
+                        filetype = "lazy",
+                        text = "Lazy",
+                        highlight = "PanelHeading",
+                        padding = 1,
+                    },
+                    {
+                        filetype = "fugitiveblame",
+                        text = "Fugitiveblame",
+                        highlight = "PanelHeading",
+                        padding = 1,
+                    },
+                },
             },
         },
     },

@@ -109,8 +109,6 @@ M.enable = function()
                             x = { require("rust-tools").expand_macro.expand_macro, "expand macro" },
                         },
                     }, { prefix = "<leader>" })
-                    -- local navic = require("nvim-navic")
-                    -- navic.attach(client, bufnr)
                 end,
                 -- capabilities = capabilities,
                 settings = {

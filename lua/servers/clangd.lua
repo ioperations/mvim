@@ -36,11 +36,9 @@ M.enable = function()
 
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.offsetEncoding = "utf-32"
-    -- local navic = require("nvim-navic")
     local wk = require("which-key")
 
     local on_attach = function(client, bufnr)
-        -- navic.attach(client, bufnr)
         wk.register({
             x = {
                 name = "Lsp",
