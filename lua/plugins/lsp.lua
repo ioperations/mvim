@@ -309,6 +309,7 @@ return {
                 border = "rounded",
             })
 
+            -- https://github.com/neovim/neovim/issues/23291
             require("vim.lsp._watchfiles")._watchfunc = function(_, _, _)
                 return true
             end
