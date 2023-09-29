@@ -13,9 +13,13 @@ return {
             group = "_winbar",
             pattern = "*",
             callback = function()
+                local filetypes =
+                    { "c", "cpp", "inc", "lua", "sh", "javascript", "typescript", "rust", "go", "python", "vim" }
                 if vim.bo.filetype == "fugitiveblame" then
                     local value = "A Git wrapper so awesome, it should be illegal"
                     vim.api.nvim_set_option_value("winbar", value, { scope = "local" })
+                elseif vim.tbl_contains(filetypes, vim.bo.filetype, {}) then
+                    vim.api.nvim_set_option_value("winbar", " ", { scope = "local" })
                 end
             end,
         })
