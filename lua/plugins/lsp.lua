@@ -47,10 +47,98 @@ return {
             end,
         },
 
+        -- {
+        --     "lvimuser/lsp-inlayhints.nvim",
+        --     event = "LspAttach",
+        --     enabled = true,
+        --     branch = "anticonceal",
+        --     opts = {},
+        --     init = function()
+        --         vim.api.nvim_create_autocmd("LspAttach", {
+        --             group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+        --             callback = function(args)
+        --                 if not (args.data and args.data.client_id) then
+        --                     return
+        --                 end
+        --                 local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
+        --                 -- vim.print("attach " .. client)
+        --                 require("lsp-inlayhints").on_attach(client, args.buf, false)
+        --             end,
+        --         })
+        --     end,
+        -- },
+
         -- rust
         {
             { "rust-lang/rust.vim", ft = { "rust", "toml" } },
-            { "simrat39/rust-tools.nvim", ft = { "rust", "toml" } },
+            -- { "simrat39/rust-tools.nvim", ft = { "rust", "toml" } },
+            {
+                "mrcjkb/rustaceanvim",
+                version = "^3", -- Recommended
+                ft = { "rust" },
+                dependencies = {
+                    "lvimuser/lsp-inlayhints.nvim",
+                },
+                config = function()
+                    vim.g.rustaceanvim = {
+                        -- Plugin configuration
+                        tools = {},
+                        -- LSP configuration
+                        server = {
+                            on_attach = function(client, bufnr)
+                                -- you can also put keymaps in here
+                                require("lsp-inlayhints").on_attach(client, bufnr)
+                            end,
+                            settings = {
+                                -- rust-analyzer language server configuration
+                                ["rust-analyzer"] = {
+                                    lens = {
+                                        enable = true,
+                                    },
+                                    imports = {
+                                        granularity = {
+                                            group = "module",
+                                        },
+                                        prefix = "self",
+                                    },
+                                    cargo = {
+                                        buildScripts = {
+                                            enable = true,
+                                        },
+                                    },
+                                    inlay_hints = {
+                                        indingModeHints = {
+                                            enable = true,
+                                        },
+                                        closureCaptureHints = {
+                                            enable = true,
+                                        },
+                                        closureReturnTypeHints = { enable = true },
+                                        expressionAdjustmentHints = {
+                                            enable = true,
+                                        },
+                                    },
+                                    procMacro = {
+                                        enable = true,
+                                    },
+                                    diagnostics = {
+                                        disabled = { "unresolved-proc-macro" },
+                                        experimental = {
+                                            enable = true,
+                                        },
+                                    },
+                                    checkOnSave = {
+                                        enable = true,
+                                        command = "clippy",
+                                    },
+                                },
+                            },
+                        },
+                        -- DAP configuration
+                        dap = {},
+                    }
+                end,
+            },
             {
                 "saecki/crates.nvim",
                 version = "v0.3.0",
@@ -200,7 +288,7 @@ return {
                     -- Next, you can provide a dedicated handler for specific servers.
                     -- For example, a handler override for the `rust_analyzer`:
                     ["rust_analyzer"] = function()
-                        require("servers.rust").enable()
+                        -- require("servers.rust").enable()
                     end,
                     ["lua_ls"] = function()
                         require("servers.luals").enable()
