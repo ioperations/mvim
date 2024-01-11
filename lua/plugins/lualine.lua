@@ -51,7 +51,6 @@ return {
                     },
                 },
                 lualine_x = {
-                    { "require'lsp-status'.status()" },
                     "encoding",
                     "fileformat",
                     "filetype",
