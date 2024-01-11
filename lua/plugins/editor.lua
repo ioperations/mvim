@@ -100,6 +100,8 @@ return {
     "mg979/vim-visual-multi",
     -- easy align
     "junegunn/vim-easy-align",
+    -- emacs keybinding
+    "tpope/vim-rsi",
     -- surround
     "tpope/vim-surround",
     -- undotree
