@@ -136,13 +136,21 @@ return {
         end,
     },
 
-    -- indent
     {
-        "lukas-reineke/indent-blankline.nvim",
+        "shellRaining/hlchunk.nvim",
+        event = { "UIEnter" },
         config = function()
-            require("ibl").setup()
+            require("hlchunk").setup({})
         end,
     },
+
+    -- indent
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     config = function()
+    --         require("ibl").setup()
+    --     end,
+    -- },
 
     -- cursorline
     {
@@ -286,7 +294,7 @@ return {
             {
                 "junegunn/fzf",
                 build = function()
-                    vim.api.nvim_exec([[call fzf#install()]], false)
+                    vim.api.nvim_exec2([[call fzf#install()]], {})
                 end,
             },
             "junegunn/fzf.vim",
