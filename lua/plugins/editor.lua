@@ -156,6 +156,8 @@ return {
     {
         "yamatsum/nvim-cursorline",
         config = function()
+            vim.api.nvim_exec2([[hi CursorWord guifg=None guibg=#3b5e6a gui=underline,bold]], {})
+
             require("nvim-cursorline").setup({
                 cursorline = {
                     enable = true,
