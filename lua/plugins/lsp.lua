@@ -33,40 +33,6 @@ return {
                 },
             },
         },
-        -- status
-        {
-            "nvim-lua/lsp-status.nvim",
-            config = function()
-                require("lsp-status").config({
-                    status_symbol = "  ",
-                    indicator_ok = "",
-                    indicator_errors = "",
-                    indicator_warnings = "",
-                    pinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
-                })
-            end,
-        },
-
-        -- {
-        --     "lvimuser/lsp-inlayhints.nvim",
-        --     event = "LspAttach",
-        --     enabled = true,
-        --     branch = "anticonceal",
-        --     opts = {},
-        --     init = function()
-        --         vim.api.nvim_create_autocmd("LspAttach", {
-        --             group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
-        --             callback = function(args)
-        --                 if not (args.data and args.data.client_id) then
-        --                     return
-        --                 end
-        --                 local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
-        --                 -- vim.print("attach " .. client)
-        --                 require("lsp-inlayhints").on_attach(client, args.buf, false)
-        --             end,
-        --         })
-        --     end,
-        -- },
 
         -- rust
         {
@@ -87,7 +53,7 @@ return {
                         server = {
                             on_attach = function(client, bufnr)
                                 -- you can also put keymaps in here
-                                require("lsp-inlayhints").on_attach(client, bufnr)
+                                vim.lsp.inlay_hint.enable()
                             end,
                             settings = {
                                 -- rust-analyzer language server configuration
@@ -291,7 +257,7 @@ return {
                         -- require("servers.rust").enable()
                     end,
                     ["lua_ls"] = function()
-                        require("servers.luals").enable()
+                        -- require("servers.luals").enable()
                     end,
                     ["clangd"] = function()
                         require("servers.clangd").enable()
@@ -320,6 +286,7 @@ return {
         config = function()
             -- Setup neovim lua configuration
             require("neodev").setup()
+            require("servers.luals").enable()
 
             -- require all language server modules
             -- rounded border on :LspInfo
