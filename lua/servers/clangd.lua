@@ -76,6 +76,7 @@ M.enable = function()
             "--all-scopes-completion",
             "--completion-style=detailed",
             "--offset-encoding=utf-32",
+            "--header-insertion=iwyu",
             "--enable-config",
             "--clang-tidy",
             "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
