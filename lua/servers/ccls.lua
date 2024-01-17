@@ -54,121 +54,123 @@ function request(method, config)
     nodeRequest(bufnr, method, params, location_handler)
 end
 
-local wk = require("which-key")
-local filetypes = { "c", "cpp", "objc", "objcpp", "opencl", "inc" }
-local server_config = {
-    filetypes = filetypes,
-    init_options = {
-        cache = {
-            -- directory = vim.fs.normalize("~/.cache/ccls/"),
-            retainInMemory = 0,
-        },
-        clang = {
-            --  "extraArgs": ["-DTEST_ADQ", "-Wall", "-std=c++17"]
-            extraArgs = {
-                "-DTEST_ADQ",
-                "-Wall",
-                "-Wpedantic",
-                "-std=c++17",
-            },
-        },
-    },
-    name = "ccls",
-    cmd = { "ccls" },
-    offset_encoding = "utf-32",
-    root_dir = vim.fs.dirname(
-        vim.fs.find({ "compile_commands.json", "compile_flags.txt", ".git" }, { upward = true })[1]
-    ),
-    on_attach = function(client, bufnr)
-        wk.register({
-            x = {
-                name = "Lsp",
-                i = { "<cmd>CclsIncomingCalls<cr>", "CCls Incoming Calls" },
-                d = { "<cmd>CclsDerived<cr>", "CCls Derived" },
-                f = { "<cmd>CclsMemberFunction<cr>", "CCls MemberFunction" },
-                D = { "<cmd>CclsDerivedHierarchy float<cr>", "CCls Derived Hierachy" },
-                o = { "<cmd>CclsOutgoingCalls<cr>", "CCls Outgoing Calls Hierachy" },
-                I = { "<cmd>CclsIncomingCallsHierarchy float<cr>", "CCls Incoming Calls Hierachy" },
-                O = { "<cmd>CclsOutgoingCallsHierarchy float<cr>", "CCls Outgoing Calls Hierachy" },
-                b = { "<cmd>CclsBase<cr>", "CCls Base" },
-                v = { "<cmd>CclsVars<cr>", "CCls Vars" },
-                m = { "<cmd>CclsMember<cr>", "CCls Member" },
-                t = { "<cmd>CclsMemberType<cr>", "CCls MemberType" },
-                B = { "<cmd>CclsBaseHierarchy float<cr>", "CCls CclsBaseHierarchy" },
-                T = { "<cmd>CclsMemberTypeHierarchy float<cr>", "CCls MemberTypeHirarchy" },
-                M = { "<cmd>CclsMemberHierarchy float<cr>", "CCls MemberHirarchy" },
-                F = { "<cmd>CclsMemberFunctionHierarchy float<cr>", "CCls MemberFunctionHierarchy" },
-            },
-        }, { prefix = "<leader>" })
-
-        local cmd = vim.api.nvim_create_user_command
-
-        local navigate = function(direction)
-            if type(direction) ~= "string" then
-                error("CclsNavigate expect D/R/L/U as params")
-                if direction ~= "D" or direction ~= "R" or direction ~= "L" or direction ~= "U" then
-                    error("CclsNavigate expect D/R/L/U as params")
-                end
-                return
-            end
-            request("$ccls/navigate", { direction = direction })
-        end
-
-        cmd("CclsNavigate", function(opts)
-            navigate(opts.args)
-        end, { nargs = "*", desc = "ccls Navigation" })
-
-        _G.create_ccls_keymap = function()
-            local buf_number = vim.api.nvim_get_current_buf()
-            vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-l>", "<cmd>CclsNavigate D<cr>", {})
-            vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-k>", "<cmd>CclsNavigate L<cr>", {})
-            vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-j>", "<cmd>CclsNavigate R<cr>", {})
-            vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-h>", "<cmd>CclsNavigate U<cr>", {})
-        end
-
-        vim.api.nvim_create_augroup("CclsGroup", {})
-        vim.api.nvim_create_autocmd("FileType", {
-            group = "CclsGroup",
-            pattern = { "c", "cpp", "objc", "objcpp" },
-            command = "v:lua.create_ccls_keymap()",
-            desc = "Create ccls keymap",
-        })
-        create_ccls_keymap()
-
-        client.server_capabilities.declarationProvider = false
-        client.server_capabilities.foldingRangeProvider = false
-        client.server_capabilities.implementationProvider = false
-        client.server_capabilities.signatureHelpProvider = false
-        client.server_capabilities.typeDefinitionProvider = false
-    end,
-}
-
 M.enable = function()
-    local async = require("plenary.async")
-    async.run(function()
-        require("ccls").setup({
-            filetypes = filetypes,
-            lsp = {
-                server = server_config,
-                disable_capabilities = {
-                    completionProvider = true,
-                    documentFormattingProvider = true,
-                    documentRangeFormattingProvider = true,
-                    documentHighlightProvider = true,
-                    documentSymbolProvider = true,
-                    workspaceSymbolProvider = true,
-                    renameProvider = true,
-                    hoverProvider = true,
-                    referencesProvider = false,
-                    definitionProvider = true,
-                    codeActionProvider = true,
-                },
-                disable_diagnostics = true,
-                disable_signature = true,
-                codelens = { enable = true },
+    local filetypes = { "c", "cpp", "objc", "objcpp", "opencl", "inc" }
+    local server_config = {
+        filetypes = filetypes,
+        init_options = {
+            cache = {
+                -- directory = vim.fs.normalize("~/.cache/ccls/"),
+                retainInMemory = 0,
             },
-        })
-    end)
+            clang = {
+                --  "extraArgs": ["-DTEST_ADQ", "-Wall", "-std=c++17"]
+                extraArgs = {},
+            },
+        },
+        name = "ccls",
+        cmd = { "ccls" },
+        offset_encoding = "utf-32",
+        root_dir = vim.fs.dirname(
+            vim.fs.find({ "compile_commands.json", "compile_flags.txt", ".git" }, { upward = true })[1]
+        ),
+        on_attach = function(client, bufnr)
+            local wk = require("which-key")
+            wk.register({
+                x = {
+                    name = "Lsp",
+                    i = { "<cmd>CclsIncomingCalls<cr>", "CCls Incoming Calls" },
+                    c = { "<cmd>CclsIncomingCalls<cr>", "CCls caller" },
+                    C = { "<cmd>CclsOutgoingCalls<cr>", "CCls callee" },
+                    d = { "<cmd>CclsDerived<cr>", "CCls Derived" },
+                    s = { "<cmd>CclsMember 2<cr>", "CCls Member nested calsses/namespace members" },
+                    f = { "<cmd>CclsMember 3<cr>", "CCls Member functions" },
+                    m = { "<cmd>CclsMember 0<cr>", "CCls Member variables" },
+                    D = { "<cmd>CclsDerivedHierarchy float<cr>", "CCls Derived Hierachy" },
+                    o = { "<cmd>CclsOutgoingCalls<cr>", "CCls Outgoing Calls Hierachy" },
+                    I = { "<cmd>CclsIncomingCallsHierarchy float<cr>", "CCls Incoming Calls Hierachy" },
+                    O = { "<cmd>CclsOutgoingCallsHierarchy float<cr>", "CCls Outgoing Calls Hierachy" },
+                    b = { "<cmd>CclsBase<cr>", "CCls Base" },
+                    v = { "<cmd>CclsVars 3<cr>", "CCls Vars; field or local variable" },
+                    V = { "<cmd>CclsVars 1<cr>", "CCls Vars; field" },
+                    W = { "<cmd>CclsVars 7<cr>", "CCls Vars; field" },
+                    t = { "<cmd>CclsMemberType<cr>", "CCls MemberType" },
+                    B = { "<cmd>CclsBaseHierarchy float<cr>", "CCls CclsBaseHierarchy" },
+                    T = { "<cmd>CclsMemberTypeHierarchy float<cr>", "CCls MemberTypeHirarchy" },
+                    M = { "<cmd>CclsMemberHierarchy float<cr>", "CCls MemberHirarchy" },
+                    F = { "<cmd>CclsMemberFunctionHierarchy float<cr>", "CCls MemberFunctionHierarchy" },
+                },
+            }, { prefix = "<leader>" })
+
+            local cmd = vim.api.nvim_create_user_command
+
+            local navigate = function(direction)
+                if type(direction) ~= "string" then
+                    error("CclsNavigate expect D/R/L/U as params")
+                    if direction ~= "D" or direction ~= "R" or direction ~= "L" or direction ~= "U" then
+                        error("CclsNavigate expect D/R/L/U as params")
+                    end
+                    return
+                end
+                request("$ccls/navigate", { direction = direction })
+            end
+
+            cmd("CclsNavigate", function(opts)
+                navigate(opts.args)
+            end, { nargs = "*", desc = "ccls Navigation" })
+
+            _G.create_ccls_keymap = function()
+                local buf_number = vim.api.nvim_get_current_buf()
+                vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-l>", "<cmd>CclsNavigate D<cr>", {})
+                vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-k>", "<cmd>CclsNavigate L<cr>", {})
+                vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-j>", "<cmd>CclsNavigate R<cr>", {})
+                vim.api.nvim_buf_set_keymap(buf_number, "n", "<c-h>", "<cmd>CclsNavigate U<cr>", {})
+            end
+
+            vim.api.nvim_create_augroup("CclsGroup", {})
+            vim.api.nvim_create_autocmd("FileType", {
+                group = "CclsGroup",
+                pattern = { "c", "cpp", "objc", "objcpp" },
+                command = "v:lua.create_ccls_keymap()",
+                desc = "Create ccls keymap",
+            })
+
+            create_ccls_keymap()
+        end,
+    }
+
+    if not vim.fn.exists(vim.fn.glob(vim.fn.getcwd() .. "/compile_commands.json")) then
+        local fallback = {
+            "-DTEST_ADQ",
+            "-Wall",
+            "-Wpedantic",
+            "-std=c++17",
+        }
+        server_config.init_options.clang.extraArgs = fallback
+    end
+
+    require("ccls").setup({
+        filetypes = filetypes,
+        lsp = {
+            server = server_config,
+            disable_capabilities = {
+                completionProvider = false,
+                documentFormattingProvider = false,
+                documentRangeFormattingProvider = false,
+                documentHighlightProvider = false,
+                documentSymbolProvider = false,
+                workspaceSymbolProvider = false,
+                renameProvider = false,
+                hoverProvider = false,
+                referencesProvider = false,
+                definitionProvider = false,
+                codeActionProvider = false,
+            },
+            disable_diagnostics = false,
+            disable_signature = false,
+            codelens = { enable = true },
+        },
+    })
 end
 
 return M
