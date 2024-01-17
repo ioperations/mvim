@@ -1,5 +1,23 @@
 return {
     {
+        "RRethy/vim-illuminate",
+        config = function()
+            require("illuminate").configure({
+                providers = {
+                    "lsp",
+                    "treesitter",
+                    "regex",
+                },
+                delay = 0,
+            })
+
+            vim.api.nvim_exec2([[hi IlluminatedWordText guibg=#3b5eaa guifg=None gui=underline,bold ]], {})
+            vim.api.nvim_exec2([[hi illuminatedWord guibg=#3b5eaa guifg=None gui=underline,bold ]], {})
+            vim.api.nvim_exec2([[hi IlluminatedWordRead  guibg=#3b5eaa guifg=None gui=underline,bold ]], {})
+            vim.api.nvim_exec2([[hi IlluminatedWordWrite  guibg=#3b5eaa guifg=None gui=underline,bold ]], {})
+        end,
+    },
+    {
         "NvChad/nvim-colorizer.lua",
         opts = {
             filetypes = { "*" },
