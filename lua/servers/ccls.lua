@@ -162,7 +162,7 @@ M.enable = function()
                 workspaceSymbolProvider = true,
                 renameProvider = true,
                 hoverProvider = true,
-                referencesProvider = true,
+                referencesProvider = false,
                 definitionProvider = true,
                 codeActionProvider = true,
             },
